@@ -5,6 +5,11 @@
   * GUI vs TUI
   * POSIX, Linux, BSD, WSL, Ubuntu, sUs, etc. definitions
 
+* What is the shell
+  * Bash/zsh
+  * Git Bash
+  * WSL
+
 * Intro tour of the Shell
   * Just to get an idea, poke around
   * ls
@@ -15,6 +20,8 @@
   * exit/^D
 
 * The directory hierarchy
+  * root dir
+  * home dir
   * dir ops
 
 * Globbing
