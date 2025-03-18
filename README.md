@@ -1,5 +1,7 @@
 # Beej's Guide to Using UNIX
 
+**NOTE: this guide does not yet exist**
+
 This is the source for Beej's Guide to Using UNIX.
 
 If you merely wish to read the guide, please visit the [Beej's Guide to
