@@ -39,6 +39,9 @@ applies to Unix, BSD, Linux, MacOS, WSL, Hurd, Ultrix, or whatever
 flavor of Unix-like you're running. And if someone says you'll need to
 use "Bash", then yes, you're in the right place!
 
+And just in case you don't know, and so we don't form any bad habits,
+Unix is pronounced "YOU-nicks".
+
 ## Audience
 
 [i[Audience]]

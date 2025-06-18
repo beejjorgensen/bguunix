@@ -134,16 +134,176 @@ Here's how a shell works:
 
 1. Print a prompt, commonly a `$` or a `%`, so that we know it's waiting
    for us to type something
-2. Read the user input
-3. If the user wants to quit the shell, exit and we're done
+2. Read the user input (i.e. the thing you typed and hit `RETURN` after)
+3. If the user wants to quit the shell, exit and we're done; the
+   terminal window closes
 4. Otherwise try to execute the program the user requested
 5. If it fails, print an error
 6. If it succeeds, wait for it to complete
 7. Go to step 1
 
-TODO
+That's the core of a shell in a... nutshell.
+
+So you know how with a windowing system like Windows or a Mac or
+X[^eb82], you point at things with your mouse and click to get stuff
+done? Imagine if you had to type instructions to someone of how to move
+the mouse and what to click on. It would still work, right?
+
+[^eb82]: The X Window System is a venerable GUI that's still extremely
+    popular on Unix-based systems. I'm using it right now, typing in a
+    terminal window. Yes, I'm writing the book in a terminal.
+
+We're going to do the same thing in the shell except the commands we
+type are going to be very concise. The drawback is that in order to use
+the shell, you must learn the commands and how they work. The good news
+is that just a few commands will get you 90% of the way there.
+
+So the story so far is that we have a program called the _terminal_ and
+when you launch it you see the output of another program within it
+called the _shell_. And the shell is where you type commands that affect
+the system. And when the shell exits, the terminal window closes.
+
+You might be wondering if this shell program has a name, and yes, they
+are named. And yes, that means there are a lot of shells. In this guide
+I'm going to talk about shells that are generally compatible with the
+_Bourne Shell_ (the command for which is `sh`). The most popular
+variant of this shell used today is the _Bourne Again Shell_ (`bash`).
+But also of particular note is the default shell on Macs called the _Z
+Shell_ (`zsh`).
+
+In general, everything in this guide will be compatible with all three
+of those shells unless otherwise noted.
 
 ## Unix and Linux and BSD and...
 
-TODO
+I've been talking about Unix a lot, but haven't really discussed what it
+is.
+
+The short of it is that Unix is an _operating system_ (OS), a sibling to
+Windows (running on PCs) and MacOS (running on Macs). The OS is very,
+very basically the layer of software between you the user and the
+hardware. And I really should say "layers", plural, because it's more
+complex than that.
+
+> **The original authors of Unix disliked another OS they were forced to
+> use called _Multics_.** So Unix is a bit of a multi-way pun.
+> Programmers like puns.
+
+UNIX® is a registered trademark of AT&T, if you can believe it. AT&T has
+had its hands in a lot of different businesses over the decades. Unix
+was created at [flw[Bell Labs|Bell_Labs]] circa 1970, making it over 50
+years old at this point, a testament to its fundamental strength.
+
+In the mid-1970s, hackers in Berkeley started adding features to their
+copy of Unix which ultimately resulted in a new fork called the Berkeley
+Software Distribution (BSD). They couldn't call it "Unix" because of the
+trademark, you see.
+
+Both Unix and BSD branched out into a multitude of subflavors. In fact,
+MacOS is a BSD variant! (Windows, is not. While Microsoft did acquire a
+license to a Unix variant called Xenix in the late 70s, they chose not
+to pursue it and kept us stuck with crappy MSDOS-based operating systems
+for years.)
+
+Then from left field, upstart computer science student Linus Torvalds
+("LEE-nus") of Finland decided he wanted to run two processes at once on
+his brand new 386 PC and started hacking on that. After declaring, upon
+initial release of his tiny OS, that it would never amount to anything
+big, it grew into the most installed OS in the known Universe[^f6ea].
+
+[^f6ea]: I know I'm going to catch some flak for that, but I'm going to
+    throw the Android OS in as a Linux variant. Android has 46% of the
+    global market share according to Wikipedia in 2025.
+
+Now, Linux came out of nothing—it's not based on Unix or BSD code. But
+it is still a Unix variant. That is, if you're used to using a shell on
+Unix or BSD, you're going to feel at home (with minor differences) using
+a shell on Linux.
+
+Before we go on, check out [flw[this Unix family tree|History_of_Unix]]
+on Wikipedia. (Notably, the impressive tree is incomplete.) Your
+impression should be that there are a _lot_ of Unix variants out there,
+and they've been morphing since the 1970s. How is it remotely possible
+that they still behave in remotely the same way?
+
+This was a big problem—big enough to earn it the name [flw[The Unix
+Wars|Unix_wars]]. But finally, after years of waging all out committee,
+a standard known as the Portable Operating System Interface (POSIX,
+"PAWS-icks", you get the "X" for free) was created. This defines the
+minimum possible set of Unix-like functionality an OS must possess in
+order to be labeled "POSIX-compliant".
+
+POSIX also defines the minimum set of features a shell must have. `sh`,
+`bash`, and `zsh` are POSIX-compliant shells, but have non-POSIX
+extensions. Other shells like `csh` and `fish` can also do the same
+shell-like things (i.e. you can control the system with them), but their
+command language is different and not POSIX.
+
+The one OS you've heard of that is _bona fide_ POSIX-certified is MacOS.
+The rest of the Unix variants are mostly POSIX-compliant; when you poke
+around in the corners, you'll find minor incompatibilities.
+
+Last and least, let's talk about Windows. After failing to do the right
+thing and use XENIX, Microsoft pushed forward with their Windows NT OS
+which eventually grew into a respectable beast on its own. But Microsoft
+had a problem: software developers liked to use Mac and Unix-like
+machines predominantly. As such, a lot of popular software packages were
+written specifically for POSIX-like OSes, and Windows couldn't run them.
+
+Microsoft tried a bunch of stuff was tried to add POSIX compatibility
+layers, and there was some success. But what they have now landed on is
+the _Windows Subsystem for Linux_ (WSL). This system basically runs a
+lightweight Linux virtual machine, which means you can open a terminal
+window and get a true `bash` shell.
+
+If you're going to learn Unix on Windows, I recommend one of two things:
+
+1. [fl[Install
+   WSL|https://learn.microsoft.com/en-us/windows/wsl/install]].
+2. [fl[Install Git Bash|https://git-scm.com/downloads/win]], part of the
+   Git version control system.
+
+Installing WSL is preferred because it gives you a full Linux system to
+play with, whereas Git Bash is really pruned down.
+
+## Distributions
+
+One final note on terminology for those thinking of installing their own
+Unix-like on their computers: _distributions_. A distribution is a
+collection of software that a person or team has put together around a
+particular OS core. Yeah, that's vague.
+
+For example, a group of people who like Linux and want it to be more
+user-friendly might take a Linux _kernel_ (the core piece of the OS) and
+add a bunch of utility programs, a GUI, and other software, bundle it
+together with an installation program, and release it to the world.
+
+Here are some Linux distributions, all with different strengths. Ubuntu
+and LinuxMint are popular beginner distros. Arch Linux and Gentoo are
+popular advanced Linux distros.
+
+* Ubuntu
+* LinuxMint
+* Debian
+* Arch Linux
+* OpenSuse
+* Gentoo
+* Slackware
+* Fedora
+* Redhat
+* Alpine Linux
+
+BSD doesn't really have distributions in quite the same way as Linux.
+But the most popular complete BSD OSes you can install are:
+
+* FreeBSD
+* OpenBSD
+* NetBSD
+* DragonFly BSD
+
+
+
+
+
+
 
