@@ -268,10 +268,10 @@ play with, whereas Git Bash is really pruned down.
 
 ## Distributions
 
-One final note on terminology for those thinking of installing their own
-Unix-like on their computers: _distributions_. A distribution is a
-collection of software that a person or team has put together around a
-particular OS core. Yeah, that's vague.
+One final optional note on terminology for those thinking of installing
+their own Unix-like on their computers: _distributions_. A distribution
+is a collection of software that a person or team has put together
+around a particular OS core. Yeah, that's vague.
 
 For example, a group of people who like Linux and want it to be more
 user-friendly might take a Linux _kernel_ (the core piece of the OS) and
@@ -300,10 +300,4 @@ But the most popular complete BSD OSes you can install are:
 * OpenBSD
 * NetBSD
 * DragonFly BSD
-
-
-
-
-
-
 
