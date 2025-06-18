@@ -1,5 +1,5 @@
 # Foreword
-<!-- Beej's guide to Learning Computer Science
+<!-- Beej's guide to Using Unix
 # vim: ts=4:sw=4:nosi:et:tw=72
 -->
 
@@ -12,40 +12,32 @@
 [is[Recursion==>see Recursion]]
 -->
 
-Are you getting into Computer Science, or thinking about it? Or maybe
-you're in it already. This super-high-level guide is for you!
+You just opened a "terminal", whatever that is, and you see something
+like this with a blinking cursor:
 
-I'm not going to talk about how to write code (much). I'll I'm going to
-talk about in these roughly 40 pages is more about _how to learn_ when
-you're a nascent software developer.
+``` {.default}
+$ █
+```
 
-Now, as much as I'd like to know exactly the way that everyone learns
-(and manage to wedge that into 40 pages), I, to be perfectly honest,
-don't.
+Wow. This ain't your parents' computer! (But it might be your
+grandparents'!)
 
-What I do have is 40+ years of programming experience (self-taught
-before college), 20 years of industry experience, and 8+ years of
-teaching experience. And a BS and MS in Computer Science.
+What do you do now? There are no windows and the mouse doesn't seem to
+help. And yet this humble interface gives you _full control_
+(_bwahahah_, well, for some definitions of "full control") over your
+computer. Everything you can do with your mouse in terms of creating
+folders, moving files, and changing settings can be done through this
+text-based interface.
 
-And I have opinions about how to best way to learn how to program!
+And here's the thing: after you get used to it, you might find that
+using the computer from this terminal window is faster than using a GUI
+and can afford even more control over the system.
 
-Now, let's get this right out of the way: you might completely disagree
-with what I have to say here. And I'm okay with that.
-
-But I have had the opportunity to see students make a wide variety of
-mistakes. And hopefully I can head some of these off at the pass for a
-number of readers.
-
-Students and teachers, alike: if you find something you disagree with or
-something vital that is missing, please don't hesitate to [fl[let me
-know|mailto:beej@beej.us]] so I can improve the guide.
-
-Disclaimer: like with all the guides I write, I'm not the master of the
-subject. And with a squishy topic like how humans learn, I'm even less
-so.
-
-But give it a read and take what's useful and leave the rest for the
-[flw[boids|Boids]].
+We're going to talk about all this in the context of the Unix operating
+system. But we're going to keep it general enough that it largely
+applies to Unix, BSD, Linux, MacOS, WSL, Hurd, Ultrix, or whatever
+flavor of Unix-like you're running. And if someone says you'll need to
+use "Bash", then yes, you're in the right place!
 
 ## Audience
 
@@ -131,8 +123,8 @@ section, below.
 
 [i[Distributing the Guide]]
 
-Beej's Guide to Learning Computer Science is Copyright © 2025 Brian
-"Beej Jorgensen" Hall.
+Beej's Guide to Using Unix is Copyright © 2025 Brian "Beej Jorgensen"
+Hall.
 
 With specific exceptions for source code and translations, below, this
 work is licensed under the Creative Commons Attribution-Noncommercial-No
@@ -180,3 +172,5 @@ acknowledge those who have made this book possible.
   from misleading instructions to typos.
 
 Thank you! ♥
+
+UNIX® is a registered trademark of The Open Group.
