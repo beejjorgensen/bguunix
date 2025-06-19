@@ -256,16 +256,6 @@ the _Windows Subsystem for Linux_ (WSL). This system basically runs a
 lightweight Linux virtual machine, which means you can open a terminal
 window and get a true `bash` shell.
 
-If you're going to learn Unix on Windows, I recommend one of two things:
-
-1. [fl[Install
-   WSL|https://learn.microsoft.com/en-us/windows/wsl/install]].
-2. [fl[Install Git Bash|https://git-scm.com/downloads/win]], part of the
-   Git version control system.
-
-Installing WSL is preferred because it gives you a full Linux system to
-play with, whereas Git Bash is really pruned down.
-
 ## Distributions
 
 One final optional note on terminology for those thinking of installing

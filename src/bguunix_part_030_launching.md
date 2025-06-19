@@ -16,6 +16,13 @@ terminal](#exiting1), below.
 
 ## Windows
 
+If you're going to learn Unix on Windows, I recommend one of two things:
+
+1. [fl[Install
+   WSL|https://learn.microsoft.com/en-us/windows/wsl/install]].
+2. [fl[Install Git Bash|https://git-scm.com/downloads/win]], part of the
+   Git version control system.
+
 TODO
 
 ## Unix-likes
