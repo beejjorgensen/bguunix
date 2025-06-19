@@ -16,14 +16,38 @@ terminal](#exiting1), below.
 
 ## Windows
 
+This is the hardest, but we'll cover it in more detail as we need to.
+
 If you're going to learn Unix on Windows, I recommend one of two things:
 
 1. [fl[Install
-   WSL|https://learn.microsoft.com/en-us/windows/wsl/install]].
+   WSL|https://learn.microsoft.com/en-us/windows/wsl/install]]
+   (**Recommended**).
 2. [fl[Install Git Bash|https://git-scm.com/downloads/win]], part of the
    Git version control system.
 
-TODO
+If you're ever going to have to do a Unix or OS programming class in
+school, you're going to need WSL anyway, so do that even though it's the
+harder of the two ways.
+
+Git Bash will get you enough to get back when learning about the
+terminal and the shell.
+
+You can easily install them both, but later we'll see they live in
+different worlds.
+
+To launch WSL:
+
+1. Hit the Windows key.
+2. Type "ubuntu".
+3. Launch "Ubuntu (app)". If you installed another distro besides the
+   default Ubuntu, type that instead.
+
+To launch Git Bash:
+
+1. Hit the Windows key.
+2. Type "git".
+3. Launch "Git Bash (app)".
 
 ## Unix-likes
 

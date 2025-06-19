@@ -319,6 +319,8 @@ $ pwd
 
 ## Home Directories in WSL
 
+This section is just for Windows users.
+
 WSL is interesting. First of all, let's just go to Windows land,
 forgetting about WSL for a moment.
 
@@ -349,7 +351,7 @@ not.)
 
 If you open Windows file explorer and go into your left sidebar, you'll
 see "Linux" with a cute little [flw[Tux|Tux_(mascot)]] icon. Click on
-that and you'll see a "Ubuntu" folder (or whatever distro you
+that and you'll see an "Ubuntu" folder (or whatever distro you
 installed). Opening that, you'll see a bunch of folders and files. This
 is the root directory in WSL! See `home` in there? I can follow that to
 the `beej` folder and see what files I have in WSL.
@@ -364,8 +366,9 @@ in WSL switching to my Windows home directory:
 $ cd /mnt/c/Users/beej
 ```
 
-This all gets extra confusing because when you first launch a WSL shell,
-it dumps you in your Windows home directory. And so you can do this:
+This all gets extra confusing because sometimes when you first launch a
+WSL shell, it dumps you in your Windows home directory. And so you can
+do this:
 
 ``` {.default}
 $ pwd
@@ -386,28 +389,53 @@ work or school, do it 100% from inside WSL and use your Linux home
 directory (e.g. `/home/beej`) as your base. Ignore `/mnt/c` unless you
 have to go there to transfer files from Windows land to Unix land. Use
 WSL Bash for all your Unix work and ignore PowerShell unless you need
-it.
+it. Part of the reason for this is differences in how Windows treats
+file permissions in `/home` versus `/mnt/c/users`; it can be a pain to
+deal with.
 
-Contrarily, if you're doing Windows development, well, why are you using
-WSL at all?
+Conversely, if you're doing Windows development, well, why are you using
+WSL at all? `:)`
 
 ## Home Directories in Git Bash
 
-TODO
+This section is just for Windows users; even if you're not running WSL,
+I recommend you read that section, above, to get more backstory.
 
-## Home Directories on the Mac
+Your home directory in Git Bash is the same as your home directory on
+Windows. Of course the path looks different, though.
+
+My home directory path is:
+
+* `/c/Users/beej` in Git Bash
+* `C:\Users\beej` in other Windows shells
+
+Importantly, and unlike WSL, these are the same place. A file you add to
+one will be immediately visible in the other. Changes you make in a File
+Explorer window will be immediately reflected in Git Bash.
+
+Also, there is no `/home` in Git Bash.
+
+Git Bash exists to make it easier to run Git commands on the command
+line as well as Bash scripts. You can use it to practice with the Unix
+command line, too!
+
+## Home Directories on Unix-likes and the Mac
 
 Congratulations! Your GUI-land home and your terminal shell home are the
 exact same directory. You can navigate to your `/home` directory in
 Finder and see everything there.
 
-You can even:
+You can probably even:
 
 ``` {.default}
 $ cd ~/Desktop
 ```
 
-and `ls` the files that are on your Mac desktop right now.
+and `ls` the files that are on your Mac or Linux desktop right
+now[^ea79].
+
+[^ea79]: Your mileage may vary on Linux or other Unices (yes, that's
+    plural). I think it's common to have the GUI desktop there, but
+    there's no law about it.
 
 I don't say it often, but well done, Apple!
-

@@ -84,62 +84,109 @@
 
 * Vim
 
-* Utility reference section
-  * bc
+* Reference section
+  * #
+  * !
+  * alias
+  * ar
+  * at
   * awk
+  * basename
+  * bash (nonstandard)
+  * bc
+  * bg
+  * c99
   * cal
   * cat
-  * cc
+  * case
+  * cc (nonstandard)
   * cd
   * chgrp
   * chmod
   * chown
+  * chsh (nonstandard)
   * cksum
   * cp
   * cut
   * date
+  * dd
   * df
   * diff
   * du
   * echo
+  * exec
+  * exit
+  * export
   * expr
+  * false
+  * fg
   * file
   * find
+  * for
+  * free (nonstandard)
   * grep
   * hash
   * head
   * hexdump (nonstandard)
+  * history (nonstandard)
+  * hostname (nonstandard)
   * id
+  * if
   * jobs
   * kill
-  * less
+  * less (nonstandard)
   * ln
   * ls
   * make
   * man
+  * md5sum (nonstandard)
   * mkdir
   * more
-  * most
+  * most (nonstandard)
   * mv
+  * nl
+  * od
+  * paste
+  * printf
   * ps
+  * pstree (nonstandard)
   * pwd
+  * read
   * reset (nonstandard)
   * rm
   * rmdir
+  * scp (nonstandard)
   * sed
+  * set
   * sh
+  * shasum (nonstandard)
   * sleep
   * sort
+  * split
+  * ssh (nonstandard)
+  * strings
   * stty
+  * su (nonstandard)
+  * sudo (nonstandard)
   * tail
   * tar (nonstandard)
   * tee
   * test
   * time
   * touch
+  * tput
+  * tr
+  * umask
+  * unalias
   * uname
+  * until
+  * unset
   * unzip (nonstandard)
+  * uptime (nonstandard)
   * vi/vim
+  * w (nonstandard)
+  * wait
   * wc
   * which (shell)
+  * while
   * zip (nonstandard)
