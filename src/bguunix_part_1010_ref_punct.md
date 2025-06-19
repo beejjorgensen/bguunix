@@ -198,5 +198,8 @@ $ echo $?
 ### See Also {.unnumbered .unlisted}
 
 [`!` (history)](#man-bang-history),
-[Variables](#man-variables)
+[`if`](#man-if),
+[Variables](#man-variables),
+[`until`](#man-until),
+[`while`](#man-while)
 
