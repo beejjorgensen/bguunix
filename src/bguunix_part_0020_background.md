@@ -251,11 +251,11 @@ had a problem: software developers liked to use Mac and Unix-like
 machines predominantly. As such, a lot of popular software packages were
 written specifically for POSIX-like OSes, and Windows couldn't run them.
 
-Microsoft tried a bunch of stuff was tried to add POSIX compatibility
-layers, and there was some success. But what they have now landed on is
-the _Windows Subsystem for Linux_ (WSL). This system basically runs a
-lightweight Linux virtual machine, which means you can open a terminal
-window and get a true `bash` shell.
+Microsoft tried a bunch of stuff to add POSIX compatibility layers, and
+there was some success. But what they have now landed on is the _Windows
+Subsystem for Linux_ (WSL). This system basically runs a lightweight
+Linux virtual machine, which means you can open a terminal window and
+get a true `bash` shell.
 
 ## Distributions
 
