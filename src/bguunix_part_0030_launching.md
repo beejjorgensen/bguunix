@@ -30,8 +30,7 @@ If you're ever going to have to do a Unix or OS programming class in
 school, you're going to need WSL anyway, so do that even though it's the
 harder of the two ways.
 
-Git Bash will get you enough to get back when learning about the
-terminal and the shell.
+Git Bash will get you enough to learn about the terminal and the shell.
 
 You can easily install them both, but later we'll see they live in
 different worlds.
@@ -67,3 +66,6 @@ Either one will cause the shell to exit.
 
 Depending on your configuration, the terminal window might instantly
 close, or it might need to be manually closed.
+
+All that's left is to learn _everything_ you can do between opening the
+terminal and exiting the shell. No problem!

@@ -13,44 +13,87 @@ Look up commands in history.
 !!
 !*
 !$
-!3490
-!-2
+!n         # Some integer n
 ```
 
 ### Description {.unnumbered .unlisted}
 
 *Note: stolen from typesetters, Unix folks pronounce "!" as "bang".*
 
-If you use the nonstandard [`history`]{#man-history} command, you can
-look back at previous commands and substitute them into current
-commands, or just run them directly.
+If you use the [`history`]{#man-history} command, you can look back at
+previous commands and substitute them into current commands, or just run
+them directly.
 
-You can run the previous command again with:
+* `!!`: substitute the previous command here.
+* `!*`: substitute all of the arguments to the previous command here.
+* `!$`: substitute the last argument from the previous command here.
+* `!-n`: substitute the _n_^th^ previous command here.
+* `!n`: substitute the command at history index _n_ here.
+
+These are substitutions, i.e. the `!` portion of the command is
+completely replaced by whatever it refers to:
 
 ``` {.default}
-$ !!
+$ echo foo
+  foo
+$ echo one !* three
+  one foo three
 ```
 
-Really, though, what this does is just replace the `!!` with whatever
-command you ran last and then process it as normal when you hit
-`RETURN`.
+In that example, `echo` is completely unaware that the substitution took
+place; the shell does it before `echo` is run.
 
-You can run specific commands from your past. For example, if I have
-this in my history:
+Also, after the substitution the shell typically prints out the command
+it is running before it runs it. So the previous example would more
+typically appear on the terminal as:
+
+``` {.default}
+$ echo one !* three
+  echo one foo three
+  one foo three
+```
+
+### Example {.unnumbered .unlisted}
+
+Running the previous command:
+
+``` {.default}
+$ ls
+  foo   bar   baz
+$ !!
+  ls
+  foo   bar   baz
+$ !! ba*
+  ls ba*
+  bar   baz
+```
+
+Running specific commands in the history by index number:
 
 ``` {.default}
 $ history
- 1027  ls /etc
- 1028  cd ..
- 1030  echo "fun"
- 1029  man ls
+   1027  ls /etc
+   1028  cd ..
+   1030  echo "fun"
+   1029  man ls
+$ !1030
+  echo "fun"
+  fun
 ```
 
-I can rerun the `echo` command in one of two ways:
+Or you can run them by negative index numbers, referring to the
+_n_^th^-previous command:
+
 
 ``` {.default}
-$ !1030       # Run specifically history index 1030
-$ !-2         # Run the command from two commands ago
+$ history
+   1027  ls /etc
+   1028  cd ..
+   1030  echo "fun"
+   1029  man ls
+$ !-4
+  ls /etc
+  [omitted]
 ```
 
 You can also substitute all the previous command's arguments in to this
@@ -76,25 +119,50 @@ ls -l foo bar
 Then it tried to run it, and `ls` complained that there was no `bar`
 file, but showed me the `foo` file without hassle.
 
-Similarly you can substitute `!$` which is just replaced with the final
-argument from the previous command.
-
 ### See Also {.unnumbered .unlisted}
 
-[`!` (negation)](#man-bang)
+[`!` (negation)](#man-bang),
+[`history`](#man-history)
 
 <!-- ================================================================ -->
 
 [[manbreak]]
 ## `!` (negation) {#man-bang}
 
-Negate the sense of a conditional.
+Negate the exit status of a command.
 
 ^POSIX^ 
 ^BUILT-IN^
 ^SCRIPT^
 
 ### Synopsis {.unnumbered .unlisted}
+
+``` {.default}
+! command
+```
+
+### Description {.unnumbered .unlisted}
+
+*Note: stolen from typesetters, Unix folks pronounce "!" as "bang".*
+
+If the command has a non-zero (failure) exit status, make it so it has a
+zero (success) exit status.
+
+If it has a zero (success) exit status, make it so it has a non-zero
+(failure) exit status.
+
+Basically we're just being difficult.
+
+This is most commonly used with `if` statements to check if something
+hasn't happened. The modified exit status will also appear in the `$?`
+environment variable.
+
+**NOTE:** the space after this `!` is very important! It's how the shell
+can differentiate it from [`!` (history)](#man-bang-history).
+
+### Example {.unnumbered .unlisted}
+
+Usage with `if`:
 
 ``` {.default}
 if ! grep foo bar.txt; then
@@ -106,10 +174,29 @@ if ! [ 1 -eq 2 ]; then
 fi
 ```
 
-### Description {.unnumbered .unlisted}
+Checking exit status:
 
-*Note: stolen from typesetters, Unix folks pronounce "!" as "bang".*
+``` {.default}
+$ ls nonexistent_file
+  ls: cannot access 'nonexistent_file': No such file or directory
+$ echo $?
+  2
+$ ! ls nonexistent_file
+  ls: cannot access 'nonexistent_file': No such file or directory
+$ echo $?
+  0
+$ ls foo
+  foo
+$ echo $?
+  0
+$ ! ls foo
+  foo
+$ echo $?
+  1
+```
 
 ### See Also {.unnumbered .unlisted}
-[`!` (history)](#man-bang-history)
+
+[`!` (history)](#man-bang-history),
+[Variables](#man-variables)
 

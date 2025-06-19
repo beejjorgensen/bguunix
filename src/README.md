@@ -183,6 +183,7 @@
   * unset
   * unzip (nonstandard)
   * uptime (nonstandard)
+  * Variables
   * vi/vim
   * w (nonstandard)
   * wait

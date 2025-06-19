@@ -42,8 +42,8 @@ How do I get the current directory? Let's issue a command to tell us,
 the "print working directory" command.
 
 (In this guide, anything prefaced with the shell prompt `$` is something
-you should type. Lines not prefaced with `$` are the output of that
-command.)
+you should type (but don't type the `$`). Lines not prefaced with `$`
+are the output of that command.)
 
 ``` {.default}
 $ pwd
@@ -61,7 +61,8 @@ starts it all. In Unix, we call this the _root directory_.
 You can imagine all those folders forming a tree-like hierarchy. The
 root directory is at the base of this tree.
 
-In Unix, the root directory is indicated by a leading `/`.
+In Unix, the root directory is indicated by a leading `/` (pronounced
+"slash").
 
 Since I'm currently in `/home/beej`, we can read this as, "From the root
 directory, which is `/`, go to the subdirectory called `home`. From
@@ -344,10 +345,10 @@ substitutions in this example:
 * `/home/beej` in WSL
 * `C:\Users\beej` in Windows
 
-And they are different places. Files you put in one are not visible in
-the other. In fact, they don't even have to have the same user name. I
-could be `/home/beej` in WSL and `C:\Users\brian` in Windows. (But I'm
-not.)
+***And they are different places.*** Files you put in one are not
+visible in the other. In fact, they don't even have to have the same
+user name. I could be `/home/beej` in WSL and `C:\Users\brian` in
+Windows. (But I'm not.)
 
 If you open Windows file explorer and go into your left sidebar, you'll
 see "Linux" with a cute little [flw[Tux|Tux_(mascot)]] icon. Click on
@@ -359,8 +360,9 @@ the `beej` folder and see what files I have in WSL.
 It might be worth bookmarking that if you go there frequently.
 
 And the reverse is true! If you're in a WSL shell, you can `cd` out into
-your Windows disk. Your Windows disk starts at path `/mnt/c`. Here I am
-in WSL switching to my Windows home directory:
+your Windows disk. Your Windows disk starts at path `/mnt/c` ("slash
+mount slash see"). Here I am in WSL switching to my Windows home
+directory:
 
 ``` {.default}
 $ cd /mnt/c/Users/beej
@@ -390,8 +392,8 @@ directory (e.g. `/home/beej`) as your base. Ignore `/mnt/c` unless you
 have to go there to transfer files from Windows land to Unix land. Use
 WSL Bash for all your Unix work and ignore PowerShell unless you need
 it. Part of the reason for this is differences in how Windows treats
-file permissions in `/home` versus `/mnt/c/users`; it can be a pain to
-deal with.
+file permissions in `/home` versus `/mnt/c/Users` or anything that maps
+to a OneDrive directory; it can be a pain to deal with.
 
 Conversely, if you're doing Windows development, well, why are you using
 WSL at all? `:)`
@@ -409,9 +411,9 @@ My home directory path is:
 * `/c/Users/beej` in Git Bash
 * `C:\Users\beej` in other Windows shells
 
-Importantly, and unlike WSL, these are the same place. A file you add to
-one will be immediately visible in the other. Changes you make in a File
-Explorer window will be immediately reflected in Git Bash.
+Importantly, and unlike WSL, ***these are the same place***. A file you
+add to one will be immediately visible in the other. Changes you make in
+a File Explorer window will be immediately reflected in Git Bash.
 
 Also, there is no `/home` in Git Bash.
 
