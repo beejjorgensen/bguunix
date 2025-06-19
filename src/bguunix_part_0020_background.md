@@ -69,10 +69,11 @@ computers were becoming more prevalent. And a lot of them had
 modems[^428a] that would allow the computer to communicate with other
 computers over the phone network.
 
-[^428a] Modem is short for _modulator/demodulator_ which is a device
-that could turn data into sound (for transmitting over a phone line) and
-sound back into data (for receiving data over a phone line). Search the
-Internet for "modem sounds" videos if you want to hear it.
+[^428a]: Modem is short for _modulator/demodulator_ which is a device
+    that could turn data into sound (for transmitting over a phone line)
+    and sound back into data (for receiving data over a phone line).
+    Search the Internet for "modem sounds" videos if you want to hear
+    it.
 
 The computers you communicated with over the modem back then were
 commonly either mainframes or BBSes[^6b34]. But in any case, your
@@ -83,11 +84,11 @@ But you could run a _terminal emulator program_ that pretended to be a
 hardware terminal. From the mainframe's perspective, it was
 none-the-wiser.
 
-[^6b34] A _bulletin board system_ (BBS) was a computer running software
-you could connect to with a modem. They typically had ways to post
-public messages for people to see, ways to read those messages, and ways
-to send email to other users. BBSes were almost exclusively accessed via
-phone.
+[^6b34]: A _bulletin board system_ (BBS) was a computer running software
+    you could connect to with a modem. They typically had ways to post
+    public messages for people to see, ways to read those messages, and
+    ways to send email to other users. BBSes were almost exclusively
+    accessed via phone.
 
 But since hardware terminals are now museum pieces themselves, no one
 says the "emulator program" part any longer since it would be redundant.
@@ -244,7 +245,7 @@ The rest of the Unix variants are mostly POSIX-compliant; when you poke
 around in the corners, you'll find minor incompatibilities.
 
 Last and least, let's talk about Windows. After failing to do the right
-thing and use XENIX, Microsoft pushed forward with their Windows NT OS
+thing and use Xenix, Microsoft pushed forward with their Windows NT OS
 which eventually grew into a respectable beast on its own. But Microsoft
 had a problem: software developers liked to use Mac and Unix-like
 machines predominantly. As such, a lot of popular software packages were
