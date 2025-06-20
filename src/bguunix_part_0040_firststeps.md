@@ -271,6 +271,12 @@ or subdirectories.
 > to try to see your files. File permissions are local to your system;
 > people over the Internet can't generally see them no matter what your
 > permission settings are.
+>
+> Now, if you're logged into a shared server, this becomes more
+> important because there are multiple users on that same system. One
+> server I have an account on has 58 other people logged into it at the
+> moment I'm writing this sentence. I have my home directory there
+> locked down so no one else can peek into it.
 
 But directories above your directory, e.g. `/home` or the root directory
 `/` don't belong to you and you don't have permission to change things
