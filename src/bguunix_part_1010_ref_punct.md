@@ -14,6 +14,7 @@ Look up commands in history.
 !*
 !$
 !n         # Some integer n
+!command   # Some previous command
 ```
 
 ### Description {.unnumbered .unlisted}
@@ -29,6 +30,8 @@ them directly.
 * `!$`: substitute the last argument from the previous command here.
 * `!-n`: substitute the _n_^th^ previous command here.
 * `!n`: substitute the command at history index _n_ here.
+* `!command`: substitute the command in the history that matches the
+  given `command`.
 
 These are substitutions, i.e. the `!` portion of the command is
 completely replaced by whatever it refers to:
@@ -118,6 +121,17 @@ ls -l foo bar
 
 Then it tried to run it, and `ls` complained that there was no `bar`
 file, but showed me the `foo` file without hassle.
+
+Lastly, let's run `gcc` again from whenever we ran it last time:
+
+``` {.default}
+$ gcc -Wall -Wextra -o foo foo.c bar.c baz.o frotz.a
+
+[a bunch of other commands in the meantime]
+
+$ !gcc   # run the last gcc command again
+  gcc -Wall -Wextra -o foo foo.c bar.c baz.o frotz.a
+```
 
 ### See Also {.unnumbered .unlisted}
 
