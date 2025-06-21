@@ -427,19 +427,20 @@ Git Bash exists to make it easier to run Git commands on the command
 line as well as Bash scripts. You can use it to practice with the Unix
 command line, too!
 
-## Home Directories on Unix-likes and the Mac
+## Home Directories on the Mac
 
 Congratulations! Your GUI-land home and your terminal shell home are the
-exact same directory. You can navigate to your `/home` directory in
-Finder and see everything there.
+exact same directory. You can navigate to your `/Users` directory in
+Finder and see everything there. My home directory on my Mac is
+`/Users/beej`.
 
-You can probably even:
+You can even:
 
 ``` {.default}
 $ cd ~/Desktop
 ```
 
-and `ls` the files that are on your Mac or Linux desktop right
+and `ls` the files that are on your Mac desktop right
 now[^ea79].
 
 [^ea79]: Your mileage may vary on Linux or other Unices (yes, that's
@@ -447,3 +448,13 @@ now[^ea79].
     there's no law about it.
 
 I don't say it often, but well done, Apple!
+
+## Home Directories in Unix-likes
+
+They tend to be under `/home` these days, but they don't have to be.
+Sometimes they're under `/usr/home`. On my Linux machines, I'm in
+`/home/beej`.
+
+In any case, `cd` will take you there, and `pwd` will tell you the path.
+For the most part, people don't care _where_ their home directory is, as
+long as they can easily get there.

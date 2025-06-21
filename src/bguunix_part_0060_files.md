@@ -14,7 +14,7 @@ Let's look at:
 ## Creating Files
 
 The usual way to create a file is to open some editor, type in some
-stuff, and save it. See the [Vim appendix](#appendix-vim) if you want to
+stuff, and save it. See the [Vim appendix](#vim-tutorial) if you want to
 tackle that editor.
 
 But that's a bit out of scope for the moment, so we're going to give you
