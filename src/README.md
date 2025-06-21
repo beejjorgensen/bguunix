@@ -89,7 +89,6 @@
   * !
   * alias
   * ar
-  * at
   * awk
   * basename
   * bash (nonstandard)
