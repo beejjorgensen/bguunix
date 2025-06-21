@@ -186,19 +186,22 @@ very basically the layer of software between you the user and the
 hardware. And I really should say "layers", plural, because it's more
 complex than that.
 
-> **The original authors of Unix disliked another OS they were forced to
-> use called _Multics_.** So Unix is a bit of a multi-way pun.
-> Programmers like puns.
-
 UNIX® is a registered trademark of AT&T, if you can believe it. AT&T has
 had its hands in a lot of different businesses over the decades. Unix
 was created at [flw[Bell Labs|Bell_Labs]] circa 1970, making it over 50
 years old at this point, a testament to its fundamental strength.
 
+> **The programmers at Bell Labs had gotten a taste for good operating
+> systems with exposure to another OS called _Multics_.** But AT&T
+> decided not to pursue that OS and dropped it, and so the programmers,
+> being unhappy with the other offerings, started a new OS they called
+> Unix. It's a bit of a multi-way pun, you see. Programmers like puns.
+
 In the mid-1970s, hackers in Berkeley started adding features to their
 copy of Unix which ultimately resulted in a new fork called the Berkeley
 Software Distribution (BSD). They couldn't call it "Unix" because of the
-trademark, you see.
+trademark, so it's just BSD. Though you will commonly catch people
+saying "BSD Unix" when they're not being careful.
 
 Both Unix and BSD branched out into a multitude of subflavors. In fact,
 MacOS is a BSD variant! (Windows, is not. While Microsoft did acquire a
