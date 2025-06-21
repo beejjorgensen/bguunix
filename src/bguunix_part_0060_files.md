@@ -130,7 +130,7 @@ We'll come back to `more` later and see some other tricks it can do.
 
 ## Renaming and Moving Files
 
-If you read the [Renaming Directories]{#mv-dir} section, this will be
+If you read the [Renaming Directories](#mv-dir) section, this will be
 very familiar to you, since it's basically the same. In fact, if you
 haven't read that section, read it now.
 
