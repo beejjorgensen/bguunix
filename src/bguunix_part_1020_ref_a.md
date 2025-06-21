@@ -142,7 +142,6 @@ $ gcc -o mycalc main.o mylib.a             # Link to it
 Run the AWK programming language.
 
 ^POSIX^ 
-^SCRIPT^
 
 ### Synopsis {.unnumbered .unlisted}
 
