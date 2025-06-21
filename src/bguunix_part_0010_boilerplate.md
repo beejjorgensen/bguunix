@@ -47,9 +47,13 @@ Unix is pronounced "YOU-nicks".
 [i[Audience]]
 
 Undergrad students just getting into programming are the people I had in
-mind while writing this. So give-or-take a bit around that target
-audience. People in high school or just looking to learn how to program
-are also probably out there in the audience, as well.
+mind while writing this. Students in high school or just looking to
+learn how to program are also probably out there in the audience, as
+well. I assume you're familiar with manipulating files in a GUI like
+Windows File Explorer or Mac Finder, and know the difference between
+files and folders. I do not assume that you're familiar with Unix, the
+terminal, the command line, the shell, Bash, Zsh, etc. I start from
+scratch on those.
 
 ## Official Homepage
 

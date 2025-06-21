@@ -176,7 +176,7 @@ from my home directory to get to the source for this book, for example.
 > thing that will get you weird looks is if you call the root directory
 > a subdirectory.
 
-## Renaming Directories
+## Renaming Directories {#mv-dir}
 
 You rename them using the `mv` ("move") command.
 
