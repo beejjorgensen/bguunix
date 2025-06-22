@@ -9,10 +9,7 @@ Make an alias for a command.
 ### Synopsis {.unnumbered .unlisted}
 
 ``` {.default}
-alias newcommand='somecommand'
-alias newcommand='somecommand '
-alias newcommand
-alias
+alias [ alias-name[=string] ... ]
 ```
 
 ### Description {.unnumbered .unlisted}
@@ -105,7 +102,7 @@ Manipulate library archives.
 ### Synopsis {.unnumbered .unlisted}
 
 ``` {.default}
-ar -rc library.a obj1.o [ obj2.o ... ]
+ar -rc archive file ...
 ```
 
 ### Description {.unnumbered .unlisted}

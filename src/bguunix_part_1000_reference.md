@@ -2,15 +2,20 @@
 
 This is the reference section—all kinds of good information in here!
 
-**These references are incomplete!** I've included a lot of the common
-commands and their common features, but you need to check the `man`
-pages for complete information! And there are a _zillion_ Unix utilities
-that you can install that do a _billion zillion_ things. This just
-covers most of POSIX and some other common ones.
+**But these references are incomplete!** I've included a lot of the
+common commands and their common features, but you need to check the
+`man` pages for complete information! And there are a _zillion_ Unix
+utilities that you can install that do a _billion zillion_ things. This
+just covers most of POSIX and some other common ones.
 
-There are a lot of commands covered, but it's not an exhaustive list
-because I'm far too lazy for that. Also I've sworn off writing
-comprehensive books, so there!
+It's not an exhaustive list because I'm far too lazy for that. Also I've
+sworn off writing comprehensive books, so there!
+
+So why do I even have this? Well, I'm trying to cover 90% of the common
+usage here and hoping that it'll be enough that you can find info more
+easily in the `man` pages. And I'm avoiding dragging you down with the
+other 90% of the commands and options that represent less than 10% of
+what you'll do.
 
 These commands come in various flavors that I've labeled in the text.
 
@@ -28,3 +33,5 @@ I'd recommend skimming **all** of these synopses just to see what kind
 of power you have in your hands. You can always look up the details
 later.
 
+**Again, all the commands listed here do more things than I talk
+about!** The `man` pages are the real references.
