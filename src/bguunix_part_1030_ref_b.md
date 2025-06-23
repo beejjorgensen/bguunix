@@ -234,19 +234,45 @@ bg [ job_id ... ]
 
 ### Description {.unnumbered .unlisted}
 
-If you have a job running in the foreground, like TODO, for example, you
-can temporarily stop that job by hitting `CTRL-Z`. When I do this in
-Zsh, it says `zsh: suspended  TODO` and drops me back at a shell prompt.
-The Vim session still exists, but it's not running at the moment.
+If you have a job running in the foreground, like something long-lived
+that you don't want to wait for called `foo`, you can temporarily stop
+that job by hitting `CTRL-Z`. When I do this in Zsh, it says `zsh:
+suspended  foo` and drops me back at a shell prompt. The `foo` program
+still exists, but it's effectively paused at the moment.
+
+To continue that job in the background, you can use the `bg` command.
+
+This allows you to specify a job number (prefaced by `%`) to put in the
+background or, if you leave that out, it will just background the most
+recently stopped job.
 
 ### Example {.unnumbered .unlisted}
 
+Given this set of jobs:
+
 ``` {.default}
+$ jobs
+  [1]  - suspended  ./foo
+  [2]  + suspended  ./bar
+```
+
+Either of these would continue `./bar` in the background:
+
+``` {.default}
+$ bg
+$ bg %2
+```
+
+And this would continue `./foo` in the background:
+
+``` {.default}
+$ bg %1
 ```
 
 ### See Also {.unnumbered .unlisted}
 
-[x](#man-x)
+[fg](#man-fg),
+[jobs](#man-jobs)
 
 -->
 <!-- ================================================================ -->
