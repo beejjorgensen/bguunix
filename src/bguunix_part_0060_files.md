@@ -3,7 +3,12 @@
 We've explored a bit of how directories work, but let's talk about the
 files that are in those directories and what we can do with them.
 
-Let's look at:
+First let's look at some supporting stuff:
+
+* Wildcards and referring to files
+* Tab completion
+
+Then let's look at:
 
 * Creating files
 * Viewing files
@@ -30,7 +35,7 @@ characters.
 For example, in my home directory, I have a zillion files that start
 with `foo.`:
 
-```
+``` {.default}
 foo.c
 foo.py
 foo.sh
@@ -183,6 +188,8 @@ adept at tab completion that they'll even complete Git commands and
 other things.
 
 ## Creating Files
+
+All right! Let's see some action!
 
 The usual way to create a file is to open some editor, type in some
 stuff, and save it. See the [Vim appendix](#vim-tutorial) if you want to
@@ -348,8 +355,65 @@ an `rm`!***
 
 Once you `rm` a file, it's really just gone[^99af].
 
-[^99af]: technically, it's still there. But most filesystems TODO
+[^99af]: Technically, it's probably still there in some undead,
+    very-difficult-to-recover form. Most filesystems don't offer a
+    temporary "Trash" folder or anything like that. But some do have
+    features that can help you undelete things. Best thing to do is just
+    triple check before you hit `RETURN`, though!
+
+And for something this dangerous, it's really easy to use!
+
+``` {.default}
+$ echo 'Hi, there' > hi.txt       # Create a file
+$ cat hi.txt                      # Examine it
+  Hi, there
+$ rm hi.txt                       # Remove it
+$ ls hi.txt                       # Look for it
+  ls: cannot access 'hi.txt': No such file or directory
+```
+
+See the output from `rm`? That's right—there is none. No news is good
+news, so it must have worked.
 
 ## Removing Subdirectory Hierarchies
 
-TODO
+Ready to get *really* dangerous?
+
+Remember how we could remove directories with `rmdir`? Well, what if you
+have a big subdirectory tree that you want to remove? That is, you want
+to remove the directory `foo/` and everything under it, including all
+the subdirectories.
+
+Since `rmdir` requires the directory to be empty, that's a lot of
+work.
+
+But `rm` offers us something more powerful: the ability to _recursively_
+remove directory trees all in one go.
+
+This is very dangerous, as you might imagine. Get it wrong and you could
+accidentally blow away **all** your stuff!
+
+If you give the `-r` option to `rm`, that means delete recursively. The
+argument is expected to be a directory name in that case.
+
+Sometimes `rm` might balk at deleting certain files for permission
+reasons, but you can (if you own the directory the file is in) still
+delete it. In that case you might also need to pass the `-f` flag
+("force").
+
+So the killer, hazardous command to remove the entire `foo/`
+subdirectory hierarchy is:
+
+``` {.default}
+$ rm -rf foo/
+```
+
+And it'll chug for a moment and then, hopefully, give you no news.
+
+If you start running one of these and realize it's a horrible, horrible
+mistake, hit `CTRL-c` as quickly as possible to interrupt it and
+minimize the damage. If you get the chance.
+
+Finally, mandatory reading on this front is the delightful [fl[UNIX
+Recovery Legend|https://www.ecb.torontomu.ca/~elf/hack/recovery.html]]
+that has been circulating for decades. Check it out.

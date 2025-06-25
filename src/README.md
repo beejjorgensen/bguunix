@@ -47,7 +47,6 @@
 
 * Intermediate Shell
   * stdin, stdout, stderr
-  * Redirection, appending
   * Grouping
   * stty sane/reset
 
