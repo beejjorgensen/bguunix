@@ -11,6 +11,177 @@ Let's look at:
 * Moving files
 * Removing files
 
+## Referring to Files and Directories
+
+We've already seen that you can just refer to a file or directory by
+name. If you have a directory named `blorple`, you can remove it simply
+by name.
+
+``` {.default}
+$ rmdir blorple
+```
+
+But let's increase our power. We're going to learn a new term here:
+_globbing_.
+
+This is a way to describe many files using just a few _wildcard_
+characters.
+
+For example, in my home directory, I have a zillion files that start
+with `foo.`:
+
+```
+foo.c
+foo.py
+foo.sh
+foo.pdf
+foo.txt
+foo.md
+```
+
+and I lose track of how many I have and what they are. I want to see an
+`ls` of just those files, and no other files. I can tell `ls` on the
+command line exactly what files I want to see...
+
+``` {.default}
+$ ls foo.c foo.py foo.sh ...
+```
+
+But (A) how do I know what files I have before I look, and (B) even if I
+did, that's a *metric ton* of typing I'll have to do. I have like 40
+`foo` files in there. No thanks!
+
+What I want is a way to say, "Hey, show me all the files that begin with
+`foo.`, please."
+
+And we can do that, like this:
+
+``` {.default}
+$ ls foo.*
+```
+
+(This is pronounced "foo dot star", typically, though some old Unix
+hackers call `*` a "splat".)
+
+And that does it! All the files that start with `foo.` are shown!
+
+> **Some behind-the-scenes footage** shows us what is happening here:
+> the shell looks at `foo.*` and _substitutes_ all the matching files on
+> the command line _before `ls` even sees it_.
+> 
+> So I say `ls foo.*` and `ls` thinks I typed:
+>
+> ``` {.default}
+> ls foo.c foo.py foo.sh foo.pdf foo.txt   # etc etc etc
+> ```
+>
+> <!-- ` -->
+> It can be helpful to remember that it's not the `ls` program (or any
+> external program) that contains the smarts about expanding the `*`;
+> the shell takes care of that dirty work before the program sees it.
+
+The `*` can go anywhere in the file name, and you can have multiple ones
+in there at the same time.
+
+For example, "Show me all files that begin with "abc" followed by any
+sequence of characters followed by "def" followed by any other
+characters."
+
+``` {.default}
+$ ls abc*def*
+```
+
+Be careful when deleting files with wildcards! You can easily delete
+more than you wanted.
+
+There are more wildcard characters that have additional meaning for
+globbing, but we'll save those for later.
+
+## Tab Completion
+
+I'm going to give you one more hint about a non-standard, **very**
+powerful feature that's common in modern shells: _tab completion_.
+
+Let's say you downloaded two images from the Internet, and they're
+named:
+
+``` {.default}
+IMG_20250624_032123277.jpg
+IMG_20250624_032123312.jpg
+```
+
+You wish to edit the second of these photos with the
+[fl[GIMP|https://www.gimp.org/]] image editor.
+
+So that would be:
+
+``` {.default}
+$ gimp IMG_20250624_032123312.jpg
+```
+
+but who wants to type all that?
+
+Your first thought might be, can I use a wildcard? You _could_, but both
+of these files start with the same prefix for a lot of characters.
+
+So great, you could type the whole name out, or maybe copy and paste
+with the mouse... but that's slow.
+
+Let's do the magic. If I type at the prompt `gimp IMG` and then hit the
+`TAB` key, this is what I see:
+
+``` {.default}
+$ gimp IMG_20250624_032123█
+```
+
+It filled out all those prefix characters for me! Basically the shell
+saw me type `IMG` and then hit `TAB`, and it went and looked for all
+files that started with `IMG` and it filled in as much of the common
+prefix as it could. It stopped when it found a character that didn't
+match because it doesn't know what to do from there.
+
+Bonus feature: if I hit `TAB` again immediately, I see this:
+
+``` {.default}
+$ gimp IMG_20250624_032123█
+  IMG_20250624_032123277.jpg  IMG_20250624_032123312.jpg
+```
+
+It printed out the candidate file names for me! What I have to do is
+choose one.
+
+And I choose it by typing the next unique character to differentiate
+between them. Looks like the first one has a `2` at the point, and the
+second a `3`. Since I want the second one, I type the `3`:
+
+``` {.default}
+$ gimp IMG_20250624_0321233█
+  IMG_20250624_032123277.jpg  IMG_20250624_032123312.jpg
+```
+
+and then I hit `TAB` again:
+
+``` {.default}
+$ gimp IMG_20250624_032123312.jpg█
+  IMG_20250624_032123277.jpg  IMG_20250624_032123312.jpg
+```
+
+And the name is completed for me! So to get that big file name loaded up
+in GIMP, I typed:
+
+``` {.default}
+gimp IMG[TAB]3[TAB]
+```
+
+and that's not many keystrokes. If there had been a subsequent ambiguity
+in the file name, I'd have had to type another character and hit `TAB`
+again, but in this case there wasn't.
+
+And like I said before, this isn't a standard feature. Your mileage may
+vary depending on your shell, but you might find that some shells are so
+adept at tab completion that they'll even complete Git commands and
+other things.
+
 ## Creating Files
 
 The usual way to create a file is to open some editor, type in some
@@ -22,7 +193,7 @@ a couple ways to create files on the command line so that we have some
 to play with.
 
 Here I'm creating a file called `foo.txt` (assuming it doesn't yet
-exist) with nothing in it:
+exist) with nothing in it using the `touch` command:
 
 ``` {.default}
 $ touch foo.txt
@@ -172,7 +343,12 @@ $ mv baz.txt someplace/frotz.txt  # Move and rename
 We're going to remove files with the `rm` command (pronounced "R-M",
 short for remove).
 
-TODO
+The only thing that's tough about this command is that ***you can't undo
+an `rm`!***
+
+Once you `rm` a file, it's really just gone[^99af].
+
+[^99af]: technically, it's still there. But most filesystems TODO
 
 ## Removing Subdirectory Hierarchies
 

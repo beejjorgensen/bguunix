@@ -26,12 +26,21 @@
 
 * Globbing
 
+* Running programs
+  * stdin, stdout, stderr
+  * Some utils
+  * ^D vs ^C
+
+* Redirection
+  * Appending
+
+* Pipes
+
 * File permissions
   * chmod
 
-* Running programs
-  * Some utils
-  * ^D vs ^C
+* Background jobs
+  * fg, bg, ^Z, disown
 
 * Killing programs
   * ps
@@ -39,9 +48,6 @@
 * Intermediate Shell
   * stdin, stdout, stderr
   * Redirection, appending
-  * Pipes
-  * Background jobs
-    * ^Z, fg, bg, disown
   * Grouping
   * stty sane/reset
 
@@ -79,10 +85,12 @@
     * hash -r
 
 * WSL
-  * Installing
   * Running VS Code
 
 * Vim
+* Nano
+
+-------------
 
 * Reference section
   * #
