@@ -142,8 +142,8 @@ $ gimp IMG_20250624_032123█
 It filled out all those prefix characters for me! Basically the shell
 saw me type `IMG` and then hit `TAB`, and it went and looked for all
 files that started with `IMG` and it filled in as much of the common
-prefix as it could. It stopped when it found a character that didn't
-match because it doesn't know what to do from there.
+prefix as it could. It stopped when it found an ambiguous character
+because it doesn't know what to do from there.
 
 Bonus feature: if I hit `TAB` again immediately, I see this:
 
@@ -199,8 +199,8 @@ But that's a bit out of scope for the moment, so we're going to give you
 a couple ways to create files on the command line so that we have some
 to play with.
 
-Here I'm creating a file called `foo.txt` (assuming it doesn't yet
-exist) with nothing in it using the `touch` command:
+Here I'm creating a file called `foo.txt` using the `touch` command
+(assuming it doesn't yet exist) with nothing in it:
 
 ``` {.default}
 $ touch foo.txt
@@ -232,7 +232,7 @@ $ cat > foo.txt
 $ █
 ```
 
-(See that `^D`? in Unix you read this as "control D", i.e. hit `CTRL-d`.
+(See that `^D`? In Unix you read this as "control D", i.e. hit `CTRL-d`.
 Any time you see a caret in front of a capital letter, it means hold
 down `CTRL` and hit that letter.)
 

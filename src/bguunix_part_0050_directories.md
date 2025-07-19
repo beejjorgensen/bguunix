@@ -119,8 +119,8 @@ path means "from here", whatever your current directory is right now.
 If you noticed in that earlier example, we did this:
 
 ``` {.default}
-$ cd      # go home
-$ mkdir foo
+$ cd            # go home
+$ mkdir foo     # make a `foo` directory there
 ```
 
 and it worked. I didn't have to do this:
@@ -143,13 +143,13 @@ because we're specifying the full path from the root—there's no
 ambiguity.
 
 People mostly deal with relative paths. It's really common for me to
-use the relative path command:
+use this relative path command from my home directory:
 
 ``` {.default}
 $ cd src/bguunix/src
 ```
 
-from my home directory to get to the source for this book, for example.
+to get to the source for this book, for example.
 
 > **Directory versus subdirectory—which is it?**
 >
@@ -192,8 +192,8 @@ $ cd foo
 ```
 
 As we'll see later, this is the same command you use to rename regular
-files. There's a hint there that subdirectories are just a special type
-of file in a Unix system, but you don't need to know that.
+files. There's a hint there that subdirectories are just a special types
+of files in a Unix system, but you don't need to know that.
 
 So why "move"? Turns out renaming a directory is a special case of
 relocating it. You can move a subdirectory from one place to another.

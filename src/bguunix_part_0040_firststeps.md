@@ -75,13 +75,19 @@ directory; it's just a directory name separator. Only the first, leading
 The output of `pwd` shows us how to get from the root directory to where
 we are now. That output is called a _path_ or _pathname_.
 
-How do we move around? With a GUI, we might click on a folder name to
+Compare this to file explorer windows in a GUI. There's a folder that is
+the "bottom-most" folder in the hierarchy—that's the root folder. Inside
+that, there's a `home` folder and inside _that_ folder is a `beej`
+folder.
+
+So how do we move around? With a GUI, we might click on a folder name to
 open it. Or there might be a "parent" folder button to go "up" a level.
 But we can't do that here because this is text land!
 
 ## Changing Directories
 
-The "change directory" command is `cd`.
+The "change directory" command is `cd`. This is how we move around
+between folders.
 
 > **Keyboards used to be bad.** I mean, *really* bad compared to modern
 > keyboards. You really didn't want to type more than you had to.
