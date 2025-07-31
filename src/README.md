@@ -153,9 +153,11 @@
   * nl
   * od
   * paste
+  * popd (nonstandard)
   * printf
   * ps
   * pstree (nonstandard)
+  * pushd (nonstandard)
   * pwd
   * read
   * reset (nonstandard)
