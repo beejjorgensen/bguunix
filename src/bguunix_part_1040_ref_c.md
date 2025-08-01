@@ -432,18 +432,18 @@ you're in it, you won't be able to do much. But you can still `cd ..`
 Basics:
 
 ``` {.default}
-cd               # Change to home
-cd ~             # Change to home with more work
-cd -             # Change to previous directory
-cd .             # Change to current directory
-cd -P .          # Change to current directory, replacing symlinks
-cd -L .          # Change to current directory, using symlinks
-cd ..            # Change to parent directory
-cd /var/spool    # Change to absolute path
-cd foo           # Change to relative path
-cd foo/bar       # Change to deeper relative path
+$ cd              # Change to home
+$ cd ~            # Change to home with more work
+$ cd -            # Change to previous directory
+$ cd .            # Change to current directory
+$ cd -P .         # Change to current directory, replacing symlinks
+$ cd -L .         # Change to current directory, using symlinks
+$ cd ..           # Change to parent directory
+$ cd /var/spool   # Change to absolute path
+$ cd foo          # Change to relative path
+$ cd foo/bar      # Change to deeper relative path
 
-cd "some directory with spaces in the name"
+$ cd "some directory with spaces in the name"
 ```
 
 Searching with `CDPATH` in the following example, first `cd` looks in
@@ -460,6 +460,251 @@ cd foo
 
 [popd](#man-popd),
 [pushd](#man-pushd)
+
+<!-- ================================================================ -->
+
+[[manbreak]]
+## `chgrp` {#man-chgrp}
+
+Change the group that owns a file or directory hierarchy.
+
+^POSIX^ 
+
+### Synopsis {.unnumbered .unlisted}
+
+``` {.default}
+chgrp [-h] [-R] group file...
+```
+
+### Description {.unnumbered .unlisted}
+
+If you create a file, the group of the file is your main group. But
+maybe you want to change it to a group with more people in it, say, so
+they get permissions. `chgrp` does this.
+
+If you have a symlink to a directory and you want to set the group of
+the symlink itself instead of the directory it points to, use `-h`.
+
+You can recursively change ownership of an entire directory hierarchy
+with `-R`. ***Be careful!*** If a symlink leads out of the subtree, you
+might get more than you bargained for. With `-R`, there are additional
+flags that control whether symlinks are followed or their groups are
+changed. So if you're using `-R` in an area with symlinks to
+directories, check the man pages for more info before pulling the
+trigger!
+
+### Example {.unnumbered .unlisted}
+
+``` {.default}
+$ chgrp wheel foo.gif
+$ chgrp hackers file1.txt file2.md
+
+$ chgrp -h quilters somesymlink  # Set symlink permission
+
+$ chgrp -R wheel somedir   # Recursively set group
+```
+
+### See Also {.unnumbered .unlisted}
+
+[chmod](#man-chmod),
+[chown](#man-chown),
+[id](#man-id)
+
+<!-- ================================================================ -->
+
+[[manbreak]]
+## `chmod` {#man-chmod}
+
+Set file permissions.
+
+^POSIX^ 
+
+### Synopsis {.unnumbered .unlisted}
+
+``` {.default}
+chmod [-R] mode file [file ...]
+```
+
+### Description {.unnumbered .unlisted}
+
+This sets a file's (or directory's) _mode_, which is a Unix-y way of
+saying "permissions".
+
+Each file has three permission sets: one for the file's owner ("User"),
+one for users in the file's group ("Group"), and one for everyone else
+("Other").
+
+Each permission set has three abilities: read, write, and execute (run)
+permission.
+
+So the owner might have read and write permission, but the group users
+and everyone else might just have read permission (because the owner
+doesn't want them to change things).
+
+Setting the mode is the tricky part. You have two amazing options:
+
+* Set the mode using a symbolic format that's more natural.
+
+* Set the mode using octal (a base 8 numbering system). This is really
+  common with experienced Unix users.
+
+Let's look at the symbolic format first.
+
+Step one is to memorize these so we can use them in discussion:
+
+|Character|Description|
+|:-:|----------|
+|`u`|User|
+|`g`|Group|
+|`o`|Other|
+|`a`|All|
+|`r`|Read|
+|`w`|Write|
+|`x`|Execute|
+|`-`|Remove permission|
+|`+`|Add permission|
+|`=`|Set permission|
+|`,`|Clause separator|
+
+You can put those together into little symbolic commands, like the
+following. You can even separate them by commas.
+
+* "Give execute permission to Group and Other": `uo+x`
+* "Give me read, write, and execute and nothing to Group and Other":
+  `u+rwx,go=`
+* "Set every permission to read, and then give me write in addition":
+  `a=r,u+w`
+* "Set Group to whatever User permission is: `g=u`.
+
+The most common use of this is to give yourself permission to run a
+shell script:
+
+``` {.default}
+$ chmod u+x foo.sh
+```
+
+Now that that's out of the way, let's look at the octal numbering
+system[^8b21] that you should be using. Get ready for math!
+
+[^8b21]: Octal is a base-8 number system. Values are represented by the
+    digits 0 through 7. Every three bits of a binary number make up a
+    single octal digits.
+
+When you `ls -l`, you might see something like this:
+
+``` {.default}
+-rw-r--r-- 1 beej beej 3490 Jul 31 17:10 foo
+```
+
+If we ignore the leading character and just extract the permissions and
+put a space between the User, Group, and Other clusters, we get this:
+
+``` {.default}
+rw- r-- r--
+```
+
+Now if I match every `-` with a `0` and every other character with a
+`1`, we get this:
+
+``` {.default}
+rw- r-- r--
+110 100 100       In binary
+```
+
+And we if convert those binary groups of three to decimal digits, we get
+this:
+
+``` {.default}
+rw- r-- r--
+110 100 100       In binary
+6   4   4         In octal
+```
+
+And we can use that `644` with `chmod` to set permissions.
+
+``` {.default}
+chmod 644 foo.txt      # Sets rw-r--r-- permissions!
+```
+
+I realize I've hand-waved over the conversion from binary to octal. You
+can look it up online, or just remember a few, below.
+
+Here are the super common ones, and of course you can imagine other
+combinations:
+
+|Octal|Permission|Description|
+|:------:|:-----------:|-----------------------------------------------|
+|`600`|`rw-------`|I can read and write and no one else can do anything|
+|`644`|`rw-r--r--`|I can read and write and everyone else can read|
+|`700`|`rwx------`|I can read, write, and execute, and no one else can do anything|
+|`755`|`rwxr-xr-x`|I can read, write, and execute and everyone else can read and execute|
+
+The commonly-used individual digits are mapped like this:
+
+|Octal|Permission|Binary
+|:------:|:-----------:|:-----------:|
+|`0`|`---`|`000`|
+|`4`|`r--`|`100`|
+|`5`|`r-x`|`101`|
+|`6`|`rw-`|`110`|
+|`7`|`rwx`|`111`|
+
+Of course any number between 0 and 7 is legal, but permissions like
+`--x` (1 in octal) are rarely used.
+
+My recommendation: use the octal. Not only is it one of the only places
+this historic number base is used in modern times, but all the cool Unix
+hackers do it this way.
+
+With directories, `r` means you can `ls`, `w` means you can create,
+delete, and rename files, and `x` means you can enter the directory. If
+you don't have `x` permission, you can't go in.
+
+You can use `-R` to recursively set permissions. ***Be careful! This
+will set all directory and file permissions in the specified directory
+tree!*** Since permissions mean different things on directories than
+they do on files, make sure this is what you want to do.
+
+### Example {.unnumbered .unlisted}
+
+With symbols:
+
+``` {.default}
+$ chmod u+x foo    # Add User execute permission
+$ chmod g-r foo    # Remove Group read permission
+$ chmod g-rw foo   # Remove Group read and write permissions
+$ chmod go-x foo   # Remove execute permission from Group and Other
+$ chmod a+r foo    # Add read permission to User, Group, and Other
+
+$ chmod o=g foo    # Set Other permission the same as group
+
+$ chmod a=,u+rw foo # Remove all permissions, give User read/write
+```
+
+With octal:
+
+``` {.default}
+$ chmod 600 foo    # rw-------
+$ chmod 640 foo    # rw-rw----
+$ chmod 644 foo    # rw-rw-rw-
+$ chmod 700 foo    # rwx------
+$ chmod 750 foo    # rwxrw----
+$ chmod 755 foo    # rwxrw-rw-
+
+$ chmod 123 foo    # --x-w--wx   weird, useless, and possible
+```
+
+Recursively remove all permissions from Other:
+
+``` {.default}
+$ chmod -R o= somedir
+```
+
+### See Also {.unnumbered .unlisted}
+
+[chown](#man-chown),
+[chgrp](#man-chgrp),
+[umask](#man-umask)
 
 <!-- ================================================================ -->
 
