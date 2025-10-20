@@ -16,7 +16,8 @@ So what can you type? We're going to start with the easiest command:
 $ ls
 ```
 
-(Don't type the `$`; just type `ls` and hit `RETURN`.)
+(Don't type the `$`; just type `ls` (pronounced "ell-ess") and hit
+`RETURN`.)
 
 This is short for "list" and it's the command that tells you what files
 are in the "current" directory (remember directories are "folders").
