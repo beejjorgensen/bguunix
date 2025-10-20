@@ -352,7 +352,7 @@ on top of Windows, you get *another* home directory, one specifically
 for Linux.
 
 So you'll have these two home directories, assuming your name is `beej`,
-which is probably isn't, but I trust you can do the necessary
+which it probably isn't, but I trust you can do the necessary
 substitutions in this example:
 
 * `/home/beej` in WSL
