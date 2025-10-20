@@ -233,8 +233,10 @@ $ █
 ```
 
 (See that `^D`? In Unix you read this as "control D", i.e. hit `CTRL-d`.
-Any time you see a caret in front of a capital letter, it means hold
-down `CTRL` and hit that letter.)
+Any time you see a caret in front of a letter, it means hold down `CTRL`
+and hit that letter. Don't hold the `SHIFT` key even if the letter is
+capitalized. If you are meant to hold the `SHIFT` key, the instructions
+will be explicit about it: `CTRL-SHIFT-D`.)
 
 **None of these are typically how files are created.** But I want to be
 able to create some files so we can test out the other file-oriented
