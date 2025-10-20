@@ -708,6 +708,205 @@ $ chmod -R o= somedir
 
 <!-- ================================================================ -->
 
+[[manbreak]]
+## `chown` {#man-chown}
+
+Change ownership (and maybe group) of a file.
+
+^POSIX^ 
+
+### Synopsis {.unnumbered .unlisted}
+
+``` {.default}
+chown [-h] owner[:group] file...
+chown -R owner[:group] file...
+```
+
+### Description {.unnumbered .unlisted}
+
+Changes the ownership and possibly group of the file(s) that you give it
+on the command line.
+
+If the file is a symlink, this will change the ownership of the file
+the symlink points to! If you want to change the ownership on the
+symlink itself, specify `-h`.
+
+Using the `-R` option applies this recursively. Be careful with this
+(you can really upset the filesystem!) and check the `man` page if there
+are symlinks involved; there are additional options that control the
+recursive behavior there.
+
+### Example {.unnumbered .unlisted}
+
+``` {.default}
+$ chown beej foo.txt        # Change ownership
+$ chown beej:users *.txt    # Change ownership and group
+
+$ chown beej a_symlink      # Change what the symlink points to
+$ chown -h beej a_symlink   # Change the symlink itself
+
+# chown -R beej:users .     # Recursively change everything from .
+```
+
+### See Also {.unnumbered .unlisted}
+
+[chgrp](#man-chgrp),
+[chown](#man-chmod)
+
+<!-- ================================================================ -->
+
+[[manbreak]]
+## `chsh` {#man-chsh}
+
+Change your default shell.
+
+^NON-STANDARD^ 
+
+### Synopsis {.unnumbered .unlisted}
+
+``` {.default}
+chsh [-s shell] [username]
+```
+
+### Description {.unnumbered .unlisted}
+
+This nonstandard utility changes your default shell. Common shells are:
+
+|Executable|Description|
+|----------------|-------------------------------------------|
+|`/bin/bash`|Bourne Again Shell (Bash)|
+|`/bin/zsh`|Zsh|
+|`/bin/tcsh`|TENEX C Shell, an improved C shell|
+|`/bin/csh`|C Shell|
+|`/bin/tsh`|Tiny SHell|
+|`/bin/ksh`|KornShell|
+|`/bin/sh`|Bourne Shell (no relation to Jason)|
+
+and several others. Sometimes shells might be found in `/usr/bin`, as
+well, which I personally find eye-twitching.
+
+If you don't specify the exact shell with `-s` on the command line, it
+will prompt you to enter one.
+
+And if you don't specify a `username`, it will assume you mean to change
+your own shell. (Only `root` can change the shell of other users.)
+
+You'll be prompted for your password when changing shells.
+
+### Example {.unnumbered .unlisted}
+
+Here's an interactive example:
+
+``` {.default}
+$ chsh
+  Changing shell for beej.
+  Password: 
+  New shell [/bin/zsh]: /bin/bash
+  Shell changed.
+```
+
+And here with `-s`:
+
+``` {.default}
+$ chsh -s /bin/zsh
+  Changing shell for beej.
+  Password:
+  Shell changed.
+```
+
+This example (running as `root`) changes the shell for user `tfsmiles`
+to Zsh:
+
+``` {.default}
+# chsh -s /bin/zsh tfsmiles
+```
+
+<!--
+### See Also {.unnumbered .unlisted}
+
+[x](#man-x)
+-->
+
+<!-- ================================================================ -->
+
+[[manbreak]]
+## `cksum` {#man-cksum}
+
+Compute a probably-unique checksum for files.
+
+^POSIX^ 
+
+### Synopsis {.unnumbered .unlisted}
+
+``` {.default}
+cksum [file...]
+```
+
+### Description {.unnumbered .unlisted}
+
+This utility can be used to relatively quickly determine (using a
+[CRC](https://en.wikipedia.org/wiki/Cyclic_redundancy_check)) if
+multiple files are very likely identical.
+
+This can be useful if you have a couple files like the following, and
+you really quickly want to determine if one is redundant:
+
+``` {.default}
+my_project_1.c
+Project_1.c
+```
+
+It'll output two numbers per file. If the numbers for one file are the
+same as the numbers for the other, the contents of the files are (very
+probably) the same.
+
+The file you give can also be `-` (or nothing), in which case it reads
+from standard input.
+
+**Important**: only use this on files that you trust (e.g. files you
+created). If you need something cryptographically secure that can't be
+spoofed by a malicious person, use `shasum`.
+
+### Example {.unnumbered .unlisted}
+
+The output is the CRC value, the number of bytes, and the file name.
+
+``` {.default}
+$ cksum file*.txt
+  3428838609 122 file1.txt
+  3428838609 122 file2.txt
+  1926076358 129 file3.txt
+```
+
+In that example, `file1.txt` and `file2.txt` have the same checksum and
+the same size, so they're probably the same. `file3.txt` is definitely
+different than both of the others. (Not only does the CRC differ, but
+the size is 7 bytes larger, as well.)
+
+And here we are reading from standard input, with me typing "Hello
+there!" on the keyboard:
+
+``` {.default}
+$ cksum -
+  Hello there!
+  2130423025 13 -
+```
+
+And a last example of getting the checksum of my directory listing:
+
+``` {.default}
+$ ls | cksum
+  1851938262 422
+```
+
+### See Also {.unnumbered .unlisted}
+
+[diff](#man-diff),
+[md5sum](#man-md5sum),
+[shasum](#man-shasum)
+
+<!-- ================================================================ -->
+
 <!--
 
 [[manbreak]]
