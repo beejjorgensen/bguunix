@@ -24,6 +24,8 @@ These commands come in various flavors that I've labeled in the text.
   command.
 * **SCRIPT**: this is typically used in a shell script, but can be used
   on the command line.
+* **NON-STANDARD**: this is a commonly-installed command on a variety of
+  Unix-likes, but it's not technically a POSIX-standard command.
 
 Just because the command is POSIX and your system has it doesn't
 necessarily mean that it will match these reference pages exactly. When
