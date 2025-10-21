@@ -907,6 +907,233 @@ $ ls | cksum
 
 <!-- ================================================================ -->
 
+[[manbreak]]
+## `cp` {#man-cp}
+
+Copy a file.
+
+^POSIX^ 
+
+### Synopsis {.unnumbered .unlisted}
+
+``` {.default}
+cp [-P] source_file target_file
+cp [-P] source_file... target_dir
+cp -R source_file... target_dir
+```
+
+### Description {.unnumbered .unlisted}
+
+This copies a file to another file.
+
+Or it copies a file to another directory, preserving the file name.
+
+Or it copies a bunch of files to another directory, preserving the file
+names.
+
+In short, it copies files.
+
+If you specify `-P` and any of the source files are symlinks, it copies
+the symlink instead of the file that it points to.
+
+And if you want to copy directory trees, `-R` (recursive) is for you! It
+will copy the entire tree from one place to another.
+
+Here are some funky rules depending on if the source or destination is a
+subdirectory. (We're assuming `-R` if the source is a directory.)
+
+|Source|Destination|Effect|
+|--------|--------|-----------------------------------------------------|
+|File|New File|A copy of the source file is made in the destination file in the current directory.|
+|File|Existing Directory|A copy of the source file is made in the destination directory.|
+|Directory|New Directory Name|A copy of the source directory tree is made with the new directory name in the current directory.|
+|Directory|Existing Directory|A copy of the source directory tree is made with the same name inside the existing directory.|
+
+### Example {.unnumbered .unlisted}
+
+In all these examples, you can use full paths or relative paths.
+
+Make a copy of a file:
+
+``` {.default}
+$ cp foo.txt foo_copy.txt     # Creates foo_copy.txt
+```
+
+Copy a file to a directory:
+
+``` {.default}
+$ cp foo.txt some_dir           # Creates some_directory/foo.txt
+$ cp foo.txt some_dir/bar.txt   # Creates some_directory/bar.txt
+```
+
+Copy files to a directory:
+
+``` {.default}
+$ cp foo.txt bar.txt baz.txt some_dir
+$ cp *.txt some_dir
+```
+
+Copy a symlink (not the file it points to):
+
+``` {.default}
+cp -P symlink symlink_copy
+```
+
+Recursively copy a directory to some destination.
+
+``` {.default}
+cp -R some_dir new_dir_name   # Make a copy in the current dir
+cp -R some_dir existing_dir   # Make a copy in the existing dir
+```
+
+### See Also {.unnumbered .unlisted}
+
+[mv](#man-mv)
+
+<!-- ================================================================ -->
+
+[[manbreak]]
+## `cut` {#man-cut}
+
+Cut characters or fields out of a line.
+
+^POSIX^ 
+^SCRIPT^
+
+### Synopsis {.unnumbered .unlisted}
+
+``` {.default}
+cut -b list [-n] [file...]
+cut -c list [file...]
+cut -f list [-d delim] [-s] [file...]
+```
+
+### Description {.unnumbered .unlisted}
+
+This is a pretty powerful utility that's used to split up lines of input
+data in a variety of ways.
+
+Let's say you have some data in rows in a file, separated by some
+delimiter, like `,` or `:`. The `cut` utility allows you to extract
+specific columns or fields out of each line of the file. This is a
+pretty typical usage.
+
+Less typically, you can split lines up from specific character indexes,
+or by specific byte indexes. (Some characters, e.g. emoji, are made up
+of multiple bytes.)
+
+You can also `printf` shell variables into it to cut their contents
+apart.
+
+|Option|Effect|
+|----|----------------------|
+|`-b`|Split on bytes|
+|`-c`|Split on characters|
+|`-f`|Split on fields; use `-d` to specify a delimiter|
+
+When splitting on bytes, you can prevent cut from splitting
+mid-character with `-n`.
+
+But, back to the common case of splitting on fields, the default field
+delimiter is a `TAB` character (not a sequence of spaces, but an actual
+`TAB`). You can change the delimiter with `-d`.
+
+The `list` argument, above, is which bytes, characters, or fields to
+extract. This can be a single number, or a range of numbers separated by
+a `-`. When specifying a range, you can leave off the first number or
+the last number, indicating "from the beginning to here" and "from here
+to the end". You can also specify multiple ranges by separating them by
+commas or spaces. 
+
+The leftmost index for all of the different modes is `1`.
+
+Lastly, the `-s` option for `-f` tells `cut` to not print out any lines
+that don't have delimiters in them. (Otherwise it prints them as-is.)
+
+### Example {.unnumbered .unlisted}
+
+Let's cut some fields. I have this file, `input1.txt`, that looks like
+this (**important**: these are `TAB` characters between the words, not
+spaces!):
+
+``` {.default}
+ant    bat    cat    deer
+emu    frog    goose    hamster
+impala    jackal    kangaroo    leopard
+manatee    nighthawk    ocelot    porcupine
+```
+
+Let's first get field 2:
+
+``` {.default}
+$ cut -f2 input1.txt
+  bat
+  frog
+  jackal
+  nighthawk
+```
+
+And then fields 2-3:
+
+``` {.default}
+$ cut -f2-3 input1.txt
+  bat    cat
+  frog    goose
+  jackal    kangaroo
+  nighthawk    ocelot
+```
+
+And then fields 1 and 3-4:
+
+``` {.default}
+$ cut -f1,3-4 input2.txt
+  ant    cat    deer
+  emu    goose    hamster
+  impala    kangaroo    leopard
+  manatee    ocelot    porcupine
+```
+
+And if we have a different delimiter, like `:` in the following file
+`input2.txt`:
+
+``` {.default}
+ant:bat:cat:deer
+emu:frog:goose:hamster
+impala:jackal:kangaroo:leopard
+manatee:nighthawk:ocelot:porcupine
+```
+
+we can use `-d` to split on that. Let's cut out fields 1 followed by 3
+to the end:
+
+``` {.default}
+$ cut -d: -f1,3- input2.txt
+  ant:cat:deer
+  emu:goose:hamster
+  impala:kangaroo:leopard
+  manatee:ocelot:porcupine
+```
+
+If the delimiter is a space, use `-d' '`. Keep in mind that multiple
+spaces in a row all count as delimiters with empty fields between them!
+If you need to collapse multiple spaces into a single space, the `sed`
+utility can help you out.
+
+Let's cut words 3-6 out of a shell variable:
+
+``` {.default}
+$ x="This is a test of the Unix emergency broadcast system"
+$ echo $x | cut -d' ' -f3-6
+  a test of the
+```
+
+### See Also {.unnumbered .unlisted}
+
+[awk](#man-awk),
+[sed](#man-sed)
+
+<!-- ================================================================ -->
+
 <!--
 
 [[manbreak]]
