@@ -7,6 +7,17 @@ modern extension of some very old technology, after all) and allow you
 to be more comfortable operating in the medium. I hope. At least it
 sounds good.
 
+I'm going to assume that you know how to do basic navigation though a
+graphical user interface (GUI) on your system. That is, you can open
+files and folders, create new files and folders, run applications, move
+things between folders (and your "desktop"), rename files, and so on.
+
+We're going to be doing exactly the same things, but we're going to be
+doing it _without a GUI_ (consternation!) Instead of dragging and
+dropping and using the mouse, we're going to be _typing commands_ that
+cause the computer to do those same things... and, as we'll eventually
+see, those same things and so much more!
+
 ## In the Beginning
 
 A tiny fraction of moment after the Big Bang, cosmic inflation [_tape
@@ -127,21 +138,28 @@ the system must do. Like a command to move that file from the desktop to
 a different folder. Or show me what files are in a folder. Or delete
 some files. Or, importantly, run another program.
 
+This is the text interface that we'll be using instead of the GUI that
+you're so accustomed to. But remember: the text interface can do all
+those same things. Instead of memorizing how to use a mouse, you're
+going to memorize a bunch of commands you can type. And while that
+sounds like work (and it is), it ultimately empowers you to be a whole
+lot faster and more capable with the machine.
+
 > **From now on, I'm going to say _directory_ instead of "folder".** In
 > this world, folders are called _directories_. And on virtually all
-> modern systems, they're the same thing.
+> modern systems, folders and directories are the same thing.
 
 Here's how a shell works:
 
 1. Print a prompt, commonly a `$` or a `%`, so that we know it's waiting
-   for us to type something
+   for us to type something.
 2. Read the user input (i.e. the thing you typed and hit `RETURN` after)
 3. If the user wants to quit the shell, exit and we're done; the
-   terminal window closes
-4. Otherwise try to execute the program the user requested
-5. If it fails, print an error
-6. If it succeeds, wait for it to complete
-7. Go to step 1
+   terminal window closes.
+4. Otherwise try to execute the program the user requested.
+5. If it fails, print an error.
+6. If it succeeds, wait for the program to complete.
+7. Go to step 1.
 
 That's the core of a shell in a... nutshell.
 
@@ -210,14 +228,15 @@ to pursue it and kept us stuck with crappy MSDOS-based operating systems
 for years.)
 
 Then from left field, upstart computer science student Linus Torvalds
-("LEE-nus") of Finland decided he wanted to run two processes at once on
-his brand new 386 PC and started hacking on that. After declaring, upon
-initial release of his tiny OS, that it would never amount to anything
-big, it grew into the most installed OS in the known Universe[^f6ea].
+("LEE-nus", roughly) of Finland decided he wanted to run two processes
+at once on his brand new 386 PC and started hacking on that. After
+declaring, upon initial release of his tiny OS, that it would never
+amount to anything big, it grew into the most installed OS in the known
+Universe[^f6ea].
 
 [^f6ea]: I know I'm going to catch some flak for that, but I'm going to
-    throw the Android OS in as a Linux variant. Android has 46% of the
-    global market share according to Wikipedia in 2025.
+    throw the Android OS in as a Linux variant. Android alone has 46% of
+    the global market share according to Wikipedia in 2025.
 
 Now, Linux came out of nothing—it's not based on Unix or BSD code. But
 it is still a Unix variant. That is, if you're used to using a shell on

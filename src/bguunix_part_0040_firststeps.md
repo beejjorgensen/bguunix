@@ -39,8 +39,15 @@ open at the same time, each showing a different folder. Shell windows
 are the same. You might have many shell windows open at once all in
 their current directories.
 
-How do I get the current directory? Let's issue a command to tell us,
-the "print working directory" command.
+Users of shells tend to keep track, in their heads, of which directory
+they're "currently in". When you open a shell, it starts off in a
+particular directory, and as you command it to change directories, you
+keep track of where you "are". This is analogous to what's being shown
+in a file explorer window in a GUI—the file explorer window knows where
+it "is" so it can show you the files there.
+
+But sometimes we forget which directory we're in, so we can ask. Let's
+issue a command to tell us, the "print working directory" command.
 
 (In this guide, anything prefaced with the shell prompt `$` is something
 you should type (but don't type the `$`). Lines not prefaced with `$`
@@ -52,7 +59,8 @@ $ pwd
 ```
 
 Your output may vary—I'm on a Linux machine. On a Mac you might see
-`/Users/beej` or on WSL `/mnt/c/Users/Beej`.
+`/Users/beej` or on WSL `/mnt/c/Users/Beej`. Assuming your name is
+"Beej", of course.
 
 What's that mean? Remember that with the GUI we have folders, and
 folders can contain folders which can contain folders. Well, it has to
@@ -201,8 +209,8 @@ $ ls -a
   ..  bgnet   conquest  perlin
 ```
 
-Hmmm! We have two more files there, `.` and `..`. They both start with a
-period, so they're hidden. What are they?
+Hmmm! We have two more files there, `.` and `..` ("dot" and "dot-dot").
+They both start with a period, so they're hidden. What are they?
 
 ``` {.default}
 $ ls -aF
@@ -210,8 +218,9 @@ $ ls -aF
   ../  bgnet   conquest  perlin
 ```
 
-Oh! They're directories! (Also see how I did `-a` and `-F` in that
-`ls`?)
+Oh! They're directories! (Also see how I did `-a` and `-F` in that `ls`?
+I could have specified them as separate options, but this saves a few
+precious keystrokes.)
 
 These are special directories, and every directory contains them. They
 always mean the same things.

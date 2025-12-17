@@ -264,6 +264,59 @@ Convert a file with newline-delimited TODO
 
 <!-- ================================================================ -->
 
+[[manbreak]]
+## `df` {#man-df}
+
+Tell you how much free disk you have.
+
+^POSIX^ 
+
+### Synopsis {.unnumbered .unlisted}
+
+``` {.default}
+df [-k] [-P] [directory...]
+df [-h] [directory...]      # Non-standard
+```
+
+### Description {.unnumbered .unlisted}
+
+Do you want to know how much space you have left on this disk before you
+download the latest Hollywood movie rip from your favorite pirate
+website? `df` has you covered.
+
+By default, it reports the used and free space on all mounted volumes,
+which might be more than you're interested in. You can specify a
+directory and it'll tell you the information for the volume that
+directory is in.
+
+Use `-k` to specify "kilobytes" as the unit. This might or might not be
+your default on your system. If it's not, the units are probably
+512-byte blocks or 4 kilobyte blocks.
+
+Use the non-standard `-h` for "human" units in the output. It will
+automatically select units that are most useful, like "`G`" for
+gigabytes or "`T`" for terabytes. Or "`P`" for petabytes if you're
+trying to show off.
+
+Lastly, `-P` will show the output in "POSIX-compliance mode" which is a
+well-defined standard output format that your system might or might not
+use by default.
+
+TODO
+
+### Example {.unnumbered .unlisted}
+
+TODO
+``` {.default}
+```
+
+### See Also {.unnumbered .unlisted}
+
+TODO
+[x](#man-x)
+
+<!-- ================================================================ -->
+
 <!--
 
 [[manbreak]]
