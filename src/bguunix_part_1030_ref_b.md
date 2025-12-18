@@ -63,7 +63,7 @@ $ basename "$gimme" s   # What my dog gets
 
 ### See Also {.unnumbered .unlisted}
 
-[dirname](#man-dirname)
+[`dirname`](#man-dirname)
 
 <!-- ================================================================ -->
 
@@ -107,8 +107,8 @@ $ bash -x scriptname
 
 ### See Also {.unnumbered .unlisted}
 
-[sh](#man-sh),
-[zsh](#man-zsh)
+[`sh`](#man-sh),
+[`zsh`](#man-zsh)
 
 <!-- ================================================================ -->
 
@@ -271,8 +271,8 @@ $ bg %1
 
 ### See Also {.unnumbered .unlisted}
 
-[fg](#man-fg),
-[jobs](#man-jobs)
+[`fg`](#man-fg),
+[`jobs`](#man-jobs)
 
 <!-- ================================================================ -->
 
@@ -301,6 +301,6 @@ One line description.
 
 ### See Also {.unnumbered .unlisted}
 
-[x](#man-x)
+[`x`](#man-x)
 
 -->

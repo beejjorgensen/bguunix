@@ -56,9 +56,9 @@ $ clang -o foo -Wall -Wextra foo.c bar.c baz.c
 
 ### See Also {.unnumbered .unlisted}
 
-[cc](#man-cc),
-[clang](#man-clang),
-[gcc](#man-gcc)
+[`cc`](#man-cc),
+[`clang`](#man-clang),
+[`gcc`](#man-gcc)
 
 <!-- ================================================================ -->
 
@@ -119,7 +119,7 @@ which might depend on your locale.
 
 ### See Also {.unnumbered .unlisted}
 
-[date](#man-date)
+[`date`](#man-date)
 
 <!-- ================================================================ -->
 
@@ -217,8 +217,8 @@ $ cat loveletter.txt
 
 ### See Also {.unnumbered .unlisted}
 
-[grep](#man-grep),
-[more](#man-more)
+[`grep`](#man-grep),
+[`more`](#man-more)
 
 <!-- ================================================================ -->
 
@@ -329,7 +329,7 @@ case $word in
 
 ### See Also {.unnumbered .unlisted}
 
-[if](#man-if)
+[`if`](#man-if)
 
 <!-- ================================================================ -->
 
@@ -371,9 +371,9 @@ $ cc -c foo.c
 
 ### See Also {.unnumbered .unlisted}
 
-[c99](#man-c99),
-[clang](#man-clang),
-[gcc](#man-gcc)
+[`c99`](#man-c99),
+[`clang`](#man-clang),
+[`gcc`](#man-gcc)
 
 <!-- ================================================================ -->
 
@@ -458,8 +458,8 @@ cd foo
 
 ### See Also {.unnumbered .unlisted}
 
-[popd](#man-popd),
-[pushd](#man-pushd)
+[`popd`](#man-popd),
+[`pushd`](#man-pushd)
 
 <!-- ================================================================ -->
 
@@ -506,9 +506,9 @@ $ chgrp -R wheel somedir   # Recursively set group
 
 ### See Also {.unnumbered .unlisted}
 
-[chmod](#man-chmod),
-[chown](#man-chown),
-[id](#man-id)
+[`chmod`](#man-chmod),
+[`chown`](#man-chown),
+[`id`](#man-id)
 
 <!-- ================================================================ -->
 
@@ -702,9 +702,9 @@ $ chmod -R o= somedir
 
 ### See Also {.unnumbered .unlisted}
 
-[chown](#man-chown),
-[chgrp](#man-chgrp),
-[umask](#man-umask)
+[`chown`](#man-chown),
+[`chgrp`](#man-chgrp),
+[`umask`](#man-umask)
 
 <!-- ================================================================ -->
 
@@ -750,8 +750,8 @@ $ chown -h beej a_symlink   # Change the symlink itself
 
 ### See Also {.unnumbered .unlisted}
 
-[chgrp](#man-chgrp),
-[chown](#man-chmod)
+[`chgrp`](#man-chgrp),
+[`chown`](#man-chmod)
 
 <!-- ================================================================ -->
 
@@ -824,7 +824,7 @@ to Zsh:
 <!--
 ### See Also {.unnumbered .unlisted}
 
-[x](#man-x)
+[`x`](#man-x)
 -->
 
 <!-- ================================================================ -->
@@ -901,9 +901,9 @@ $ ls | cksum
 
 ### See Also {.unnumbered .unlisted}
 
-[diff](#man-diff),
-[md5sum](#man-md5sum),
-[shasum](#man-shasum)
+[`diff`](#man-diff),
+[`md5sum`](#man-md5sum),
+[`shasum`](#man-shasum)
 
 <!-- ================================================================ -->
 
@@ -988,7 +988,7 @@ cp -R some_dir existing_dir   # Make a copy in the existing dir
 
 ### See Also {.unnumbered .unlisted}
 
-[mv](#man-mv)
+[`mv`](#man-mv)
 
 <!-- ================================================================ -->
 
@@ -1129,8 +1129,8 @@ $ echo $x | cut -d' ' -f3-6
 
 ### See Also {.unnumbered .unlisted}
 
-[awk](#man-awk),
-[sed](#man-sed)
+[`awk`](#man-awk),
+[`sed`](#man-sed)
 
 <!-- ================================================================ -->
 
@@ -1159,6 +1159,6 @@ One line description.
 
 ### See Also {.unnumbered .unlisted}
 
-[x](#man-x)
+[`x`](#man-x)
 
 -->

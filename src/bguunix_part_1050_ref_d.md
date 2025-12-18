@@ -112,7 +112,7 @@ $ date +'%Y-%m-%dT%H:%M:%S%:z'
 <!--
 ### See Also {.unnumbered .unlisted}
 
-[x](#man-x)
+[`x`](#man-x)
 -->
 
 <!-- ================================================================ -->
@@ -260,7 +260,7 @@ Convert a file with newline-delimited TODO
 
 ### See Also {.unnumbered .unlisted}
 
-[cp](#man-cp)
+[`cp`](#man-cp)
 
 <!-- ================================================================ -->
 
@@ -358,8 +358,8 @@ $ df -P
 
 ### See Also {.unnumbered .unlisted}
 
-[du](#man-du),
-[free](#man-free)
+[`du`](#man-du),
+[`free`](#man-free)
 
 <!-- ================================================================ -->
 
@@ -596,7 +596,7 @@ $ diff -q foo2.txt bar2.txt
 
 ### See Also {.unnumbered .unlisted}
 
-[patch](#man-patch)
+[`patch`](#man-patch)
 
 <!-- ================================================================ -->
 
@@ -651,7 +651,7 @@ $ dirname foo.txt
 
 ### See Also {.unnumbered .unlisted}
 
-[basename](#man-basename)
+[`basename`](#man-basename)
 
 <!-- ================================================================ -->
 
@@ -759,8 +759,8 @@ $ du -a ~/doc | grep '\.pdf$' | sort -rn | head
 
 ### See Also {.unnumbered .unlisted}
 
-[df](#man-df),
-[free](#man-free)
+[`df`](#man-df),
+[`free`](#man-free)
 
 <!-- ================================================================ -->
 
@@ -790,6 +790,6 @@ One line description.
 
 ### See Also {.unnumbered .unlisted}
 
-[x](#man-x)
+[`x`](#man-x)
 
 -->

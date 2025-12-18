@@ -88,7 +88,7 @@ $ alias          # View all aliases
 
 ### See Also {.unnumbered .unlisted}
 
-[set](#man-set)
+[`set`](#man-set)
 
 <!-- ================================================================ -->
 
@@ -128,8 +128,8 @@ $ gcc -o mycalc main.o mylib.a             # Link to it
 
 ### See Also {.unnumbered .unlisted}
 
-[gcc](#man-gcc),
-[cc](#man-cc)
+[`gcc`](#man-gcc),
+[`cc`](#man-cc)
 
 <!-- ================================================================ -->
 
@@ -201,7 +201,7 @@ $ ls -la | awk -f foo.awk
 
 ### See Also {.unnumbered .unlisted}
 
-[cut](#man-cut)
+[`cut`](#man-cut)
 
 <!-- ================================================================ -->
 
@@ -230,6 +230,6 @@ One line description.
 
 ### See Also {.unnumbered .unlisted}
 
-[x](#man-x)
+[`x`](#man-x)
 
 -->
