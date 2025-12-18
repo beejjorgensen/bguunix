@@ -522,8 +522,8 @@ And copied context format:
 
 ``` {.default}
 $ diff -c foo2.txt bar2.txt
-  *** foo2.txt	2025-12-17 17:23:08.856329098 -0800
-  --- bar2.txt	2025-12-17 17:22:47.690559025 -0800
+  *** foo2.txt  2025-12-17 17:23:08.856329098 -0800
+  --- bar2.txt  2025-12-17 17:22:47.690559025 -0800
   ***************
   *** 1,12 ****
   ! Paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
@@ -563,8 +563,8 @@ Lastly, unified format:
 
 ``` {.default}
 $ diff -u foo2.txt bar2.txt
-  --- foo2.txt	2025-12-17 17:23:08.856329098 -0800
-  +++ bar2.txt	2025-12-17 17:22:47.690559025 -0800
+  --- foo2.txt  2025-12-17 17:23:08.856329098 -0800
+  +++ bar2.txt  2025-12-17 17:22:47.690559025 -0800
   @@ -1,12 +1,11 @@
   -Paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
   +Changed this line. And deleted two lines from the second
@@ -652,6 +652,115 @@ $ dirname foo.txt
 ### See Also {.unnumbered .unlisted}
 
 [basename](#man-basename)
+
+<!-- ================================================================ -->
+
+[[manbreak]]
+## `du` {#man-du}
+
+Show amount of disk usage for particular files.
+
+^POSIX^ 
+
+### Synopsis {.unnumbered .unlisted}
+
+``` {.default}
+du [-a|-s] [-kx] [-L] [file...]
+du [-h] [file...]          # Non-standard
+```
+
+### Description {.unnumbered .unlisted}
+
+This tells you for a file or files (or directory hierarchies) how much
+disk space is used by the files.
+
+> Fun fact: this probably isn't the sum of the file sizes. Operating
+> systems split files into fixed-size _blocks_ and even if you just use
+> one byte of a block the whole block remains allocated to you. Blocks
+> are often 4 KB, so even a file containing `Hello, world` would use 4
+> KB according to `du`.
+
+Normally `du` will give you a breakdown in blocks, where each block is
+512 bytes. (Linux ignores this historic precedent and uses 1 KB blocks
+instead.)
+
+Also normally, it gives you a summary per directory, showing how much
+space in each is used. And it runs recursively.
+
+`-a` causes `du` to report for every file, not just every directory.
+
+`-s` causes `du` to only output the final summary line.
+
+`-k` forces output to be in kilobytes instead of blocks.
+
+`-x` ignores anything not on the current device (e.g. if there's a
+symlink to another disk somewhere in the hierarchy.)
+
+`-L` if the file is a symlink, count the size of the linked-to file in
+the results.
+
+`-h` print output sizes in "human" form, e.g. `K`, `G`, `T` for
+kilobytes, gigabytes, or terabytes.
+
+This allows you to very quickly get a handle
+
+### Example {.unnumbered .unlisted}
+
+Check out space used (in kilobytes) from the current directory (all
+listed lines are subdirectories):
+
+``` {.default}
+$ du -k
+  8   ./translations
+  20  ./website
+  12  ./source
+  68  ./.git/hooks
+  508 ./.git
+  [... snip ...]
+  1408    ./src
+  2000    .
+```
+
+Same, but just summary info:
+
+``` {.default}
+$ du -sk
+  2000    .
+```
+
+Show disk usage for all files, not just directories:
+
+``` {.default}
+$ du -a
+  4   ./translations/README.md
+  8   ./translations
+  4   ./website/index.css
+  12  ./website/index.html
+  [... snip ...]
+  72  ./src/bguunix_temp_usl_c_2.log
+  4   ./src/bguunix_part_1000_reference.md
+  1408    ./src
+  2000    .
+```
+
+Print out the disk used in `~/src` in human-readable form (536
+MB in this case):
+
+``` {.default}
+$ du -sh ~/src
+  536M    /home/beej/src
+```
+
+Find and print the 10 largest `.pdf` files in `~/doc`:
+
+``` {.default}
+$ du -a ~/doc | grep '\.pdf$' | sort -rn | head
+```
+
+### See Also {.unnumbered .unlisted}
+
+[df](#man-df),
+[free](#man-free)
 
 <!-- ================================================================ -->
 
