@@ -118,6 +118,7 @@
   * dd
   * df
   * diff
+  * dirname
   * du
   * echo
   * exec

@@ -518,70 +518,76 @@ $ diff foo2.txt bar2.txt
   > And added this line in paragraph 4
 ```
 
-``` {.default}
-% diff -c foo2.txt bar2.txt
-*** foo2.txt	2025-12-17 17:23:08.856329098 -0800
---- bar2.txt	2025-12-17 17:22:47.690559025 -0800
-***************
-*** 1,12 ****
-! Paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
-  paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
-  paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
-  paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
-
-  Paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
-  paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
-- paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
-- paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
-
-  Paragraph 3 paragraph 3 paragraph 3 paragraph 3 paragraph 3
-  paragraph 3 paragraph 3 paragraph 3 paragraph 3 paragraph 3
---- 1,11 ----
-! Changed this line. And deleted two lines from the second
-! paragraph.
-  paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
-  paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
-  paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
-
-  Paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
-  paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
-
-  Paragraph 3 paragraph 3 paragraph 3 paragraph 3 paragraph 3
-  paragraph 3 paragraph 3 paragraph 3 paragraph 3 paragraph 3
-***************
-*** 17,19 ****
---- 16,19 ----
-  paragraph 4 paragraph 4 paragraph 4 paragraph 4 paragraph 4
-  paragraph 4 paragraph 4 paragraph 4 paragraph 4 paragraph 4
-  paragraph 4 paragraph 4 paragraph 4 paragraph 4 paragraph 4
-+ And added this line in paragraph 4
-```
+And copied context format:
 
 ``` {.default}
-% diff -u foo2.txt bar2.txt
---- foo2.txt	2025-12-17 17:23:08.856329098 -0800
-+++ bar2.txt	2025-12-17 17:22:47.690559025 -0800
-@@ -1,12 +1,11 @@
--Paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
-+Changed this line. And deleted two lines from the second
-+paragraph.
- paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
- paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
- paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
-
- Paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
- paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
--paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
--paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
-
- Paragraph 3 paragraph 3 paragraph 3 paragraph 3 paragraph 3
- paragraph 3 paragraph 3 paragraph 3 paragraph 3 paragraph 3
-@@ -17,3 +16,4 @@
- paragraph 4 paragraph 4 paragraph 4 paragraph 4 paragraph 4
- paragraph 4 paragraph 4 paragraph 4 paragraph 4 paragraph 4
- paragraph 4 paragraph 4 paragraph 4 paragraph 4 paragraph 4
-+And added this line in paragraph 4
+$ diff -c foo2.txt bar2.txt
+  *** foo2.txt	2025-12-17 17:23:08.856329098 -0800
+  --- bar2.txt	2025-12-17 17:22:47.690559025 -0800
+  ***************
+  *** 1,12 ****
+  ! Paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
+    paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
+    paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
+    paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
+  
+    Paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
+    paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
+  - paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
+  - paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
+  
+    Paragraph 3 paragraph 3 paragraph 3 paragraph 3 paragraph 3
+    paragraph 3 paragraph 3 paragraph 3 paragraph 3 paragraph 3
+  --- 1,11 ----
+  ! Changed this line. And deleted two lines from the second
+  ! paragraph.
+    paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
+    paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
+    paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
+  
+    Paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
+    paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
+  
+    Paragraph 3 paragraph 3 paragraph 3 paragraph 3 paragraph 3
+    paragraph 3 paragraph 3 paragraph 3 paragraph 3 paragraph 3
+  ***************
+  *** 17,19 ****
+  --- 16,19 ----
+    paragraph 4 paragraph 4 paragraph 4 paragraph 4 paragraph 4
+    paragraph 4 paragraph 4 paragraph 4 paragraph 4 paragraph 4
+    paragraph 4 paragraph 4 paragraph 4 paragraph 4 paragraph 4
+  + And added this line in paragraph 4
 ```
+
+Lastly, unified format:
+
+``` {.default}
+$ diff -u foo2.txt bar2.txt
+  --- foo2.txt	2025-12-17 17:23:08.856329098 -0800
+  +++ bar2.txt	2025-12-17 17:22:47.690559025 -0800
+  @@ -1,12 +1,11 @@
+  -Paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
+  +Changed this line. And deleted two lines from the second
+  +paragraph.
+   paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
+   paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
+   paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
+  
+   Paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
+   paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
+  -paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
+  -paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
+  
+   Paragraph 3 paragraph 3 paragraph 3 paragraph 3 paragraph 3
+   paragraph 3 paragraph 3 paragraph 3 paragraph 3 paragraph 3
+  @@ -17,3 +16,4 @@
+   paragraph 4 paragraph 4 paragraph 4 paragraph 4 paragraph 4
+   paragraph 4 paragraph 4 paragraph 4 paragraph 4 paragraph 4
+   paragraph 4 paragraph 4 paragraph 4 paragraph 4 paragraph 4
+  +And added this line in paragraph 4
+```
+
+And only checking if the files differ:
 
 ``` {.default}
 $ diff -q foo2.txt bar2.txt
@@ -592,7 +598,61 @@ $ diff -q foo2.txt bar2.txt
 
 [patch](#man-patch)
 
--->
+<!-- ================================================================ -->
+
+[[manbreak]]
+## `dirname` {#man-dirname}
+
+Strips the file name off a complete path.
+
+^POSIX^ 
+^SCRIPT^
+
+### Synopsis {.unnumbered .unlisted}
+
+``` {.default}
+dirname path
+```
+
+### Description {.unnumbered .unlisted}
+
+For a given path, just print out the directory portion, stripping off
+the file name.
+
+This is mostly useful in scripts for getting the path where some file is
+located (so you can `cd` there, perhaps).
+
+If the path is just a single file name, the resulting directory will be
+"`.`" (the current directory).
+
+Importantly, the specified path doesn't even have to exist in order for
+this to work.
+
+### Example {.unnumbered .unlisted}
+
+Show various paths to file `foo.txt`:
+
+``` {.default}
+$ dirname /home/beej/foo.txt
+  /home/beej
+
+$ dirname ../foo.txt
+  ..
+
+$ dirname ../bar/foo.txt
+  ../bar
+
+$ dirname /foo.txt
+  /
+
+$ dirname foo.txt
+  .
+```
+
+### See Also {.unnumbered .unlisted}
+
+[basename](#man-basename)
+
 <!-- ================================================================ -->
 
 <!--
