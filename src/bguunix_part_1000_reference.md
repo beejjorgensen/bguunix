@@ -36,4 +36,5 @@ of power you have in your hands. You can always look up the details
 later.
 
 **Again, all the commands listed here do more things than I talk
-about!** The `man` pages are the real references.
+about!** I leave out all kinds of lesser-used options. The `man` pages
+are the real references.
