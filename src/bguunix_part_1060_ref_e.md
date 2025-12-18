@@ -283,6 +283,183 @@ $ echo $?
 
 <!-- ================================================================ -->
 
+[[manbreak]]
+## `export` {#man-export}
+
+Make environment variables available in child processes.
+
+^POSIX^ 
+^BUILT-IN^
+^SCRIPT^
+
+### Synopsis {.unnumbered .unlisted}
+
+``` {.default}
+export variable
+export variable=value
+export -p
+```
+
+### Description {.unnumbered .unlisted}
+
+When scripting (or just using the shell), you define a number of
+variables that are then present in that process's _environment_. When
+that process launches a child process, the question is, "Does the child
+process get the same environment variables that the parent has?"
+
+The answer is, "Yes, ***if those variables are exported***."
+
+Non-exported variables are only visible in the process in which they are
+defined. Exported variables are also visible in any child processes that
+process creates.
+
+Here's a script `foo.sh` that prints out the value of the variable
+`FOOBAR`:
+
+``` {.bash}
+printf "Variable FOOBAR=%s\n" "$FOOBAR"
+```
+
+``` {.default}
+$ sh foo.sh             # Run without setting FOOBAR
+  Variable FOOBAR=
+
+$ FOOBAR=3490           # Set, but don't export
+$ echo $FOOBAR          # Verify it's 3490
+  3490
+
+$ sh foo.sh             # Child process can't see it!
+  Variable FOOBAR=
+
+$ export FOOBAR         # Export the variable
+$ sh foo.sh             # Now child sees the value
+  Variable FOOBAR=3490
+```
+
+And you can use `-p` to print all the currently-exported variables. Try
+it—you probably have more than you expect.
+
+### Example {.unnumbered .unlisted}
+
+Export a previously-set variable `foo`:
+
+``` {.default}
+$ foo=3490
+$ export foo
+```
+
+Export and set at the same time:
+
+``` {.default}
+$ export foo=3490
+```
+
+``` {.default}
+$ export -p
+  export COLORTERM=truecolor
+  export DISPLAY=:0.0
+  export EDITOR=vim
+  [... snip ...]
+  export XDG_SESSION_ID=1
+  export XDG_SESSION_TYPE=tty
+  export XDG_VTNR=1
+```
+
+<!--
+### See Also {.unnumbered .unlisted}
+
+[`x`](#man-x)
+-->
+
+<!-- ================================================================ -->
+
+[[manbreak]]
+## `expr` {#man-expr}
+
+Do simple integer math.
+
+^POSIX^ 
+^SCRIPT^
+
+### Synopsis {.unnumbered .unlisted}
+
+``` {.default}
+expr operand...
+```
+
+### Description {.unnumbered .unlisted}
+
+This allows you to do simple mathematical expressions.
+
+**All operands must be separated by spaces**.
+
+You can use a number of operators, arithmetic, comparison, and Boolean.
+**Note that most of these operators are special shell characters and
+must be escaped with `\` or put in single quotes.**
+
+Arithmetic operators:
+
+* `+`, `-`, `*`, `/`: Addition, subtraction, multiplication, division.
+* `(`, `)`: Grouping
+
+Comparison operators return `0` for false or `1` for true:
+
+* `=`, `>`, `<`: Equal to, greater than, less than.
+* `>=`, `<=`. `!=`: Greater than or equal to, less than or equal to, not
+  equal to.
+
+Boolean operators:
+
+* `&`: Boolean AND, returns `0` if either argument is zero, otherwise
+  returns the first argument.
+* `|`: Boolean OR, returns first non-zero argument, or `0` if both are
+  zero.
+
+### Example {.unnumbered .unlisted}
+
+Straight up easy math. Note the escape on the `*` to prevent the shell
+from doing file name expansion—we don't need to escape the `+` because
+that's not a shell special character. (But we _could_ escape it without
+harm.)
+
+``` {.default}
+$ expr 1 + 3
+4
+$ expr 4 \* 5
+20
+```
+
+Integer division truncates fractional parts:
+
+``` {.default}
+$ expr 5 / 3
+  1
+```
+
+Escaping with single quotes and backslashes:
+
+``` {.default}
+$ expr '(' 4 + 2 ')' '*' 3
+18
+$ expr \( 4 + 2 \) \* 3
+18
+```
+
+Some Boolean math resulting in "true":
+
+``` {.default}
+$ expr 4 \< 12 \& 5 \> 3
+1
+```
+
+<!--
+### See Also {.unnumbered .unlisted}
+
+[`expr`](#man-expr)
+-->
+
+<!-- ================================================================ -->
+
 <!--
 
 [[manbreak]]
