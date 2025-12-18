@@ -38,3 +38,5 @@ later.
 **Again, all the commands listed here do more things than I talk
 about!** I leave out all kinds of lesser-used options. The `man` pages
 are the real references.
+
+<!-- TODO: add quick cheatsheet here -->
