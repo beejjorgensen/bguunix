@@ -302,19 +302,297 @@ Lastly, `-P` will show the output in "POSIX-compliance mode" which is a
 well-defined standard output format that your system might or might not
 use by default.
 
-TODO
+The output shows several things (any sizes are system- or
+option-dependent):
+
+* **Filesystem**: the device file that represents the disk. This might
+  be something in `/dev` or it might be a virtual entity like `tmpfs`
+  (which is a RAM disk under Linux).
+* **Disk size**: Size of the disk.
+* **Used space**: Space used. This counts not only file data but also
+  the metadata used to store the files.
+* **Free space**
+* **Percentage in use**: used space over total space.
+* **Mount point**: Where in the directory hierarchy this disk is
+  mounted, i.e. everything under that directory is stored on this
+  particular disk.
 
 ### Example {.unnumbered .unlisted}
 
-TODO
+Example default output on a Linux system:
+
 ``` {.default}
+$ df
+  Filesystem     1K-blocks     Used Available Use% Mounted on
+  /dev/nvme0n1p3 470471976 30134004 416365828   7% /
+  tmpfs            8116976       12   8116964   1% /tmp
+  /dev/nvme0n1p1   1046272    64892    981380   7% /boot
+```
+
+Showing the space in kilobytes on the drive `/home` is mounted on:
+
+``` {.default}
+$ df -k /home
+  Filesystem     1K-blocks     Used Available Use% Mounted on
+  /dev/nvme0n1p3 470471976 30134004 416365828   7% /
+```
+
+Showing space in (non-standard) human-readable form for the drive the
+current directory is mounted on.
+
+``` {.default}
+$ df -h .
+  Filesystem      Size  Used Avail Use% Mounted on
+  /dev/nvme0n1p3  449G   29G  398G   7% /
+```
+
+POSIX mode output:
+
+``` {.default}
+$ df -P
+  Filesystem     1024-blocks     Used Available Capacity Mounted on
+  /dev/nvme0n1p3   470471976 30134004 416365828       7% /
+  tmpfs              8116976       12   8116964       1% /tmp
+  /dev/nvme0n1p1     1046272    64892    981380       7% /boot
 ```
 
 ### See Also {.unnumbered .unlisted}
 
-TODO
-[x](#man-x)
+[du](#man-du),
+[free](#man-free)
 
+<!-- ================================================================ -->
+
+[[manbreak]]
+## `diff` {#man-diff}
+
+Compare files.
+
+^POSIX^ 
+
+### Synopsis {.unnumbered .unlisted}
+
+``` {.default}
+diff [-b] [-c|-C n] [-u|-U n] file1 file2
+diff [-q] file1 file2              # Non-standard
+```
+
+### Description {.unnumbered .unlisted}
+
+This tells you if two files have identical contents. And, if not, it can
+tell you, rather concisely, what the differences are.
+
+`diff` answers the question, "What would I have to change in `file1` in
+order to make it look identical to `file2`?"
+
+`-b` ignores whitespace changes and only looks for other text changes.
+
+`-c` gives lines of context, and changes the output format. `-C n`
+outputs `n` lines of context (default is 3).
+
+`-u` also gives lines of context, and changes to "unified" output mode.
+`-U n` outputs `n` lines of context (default is 3). This is the same
+mode that [fl[Git|https://git-scm.com/]] uses.
+
+The non-standard `-q` only checks to see if the files differ. If they
+do, a message is printed saying so. This is useful for comparing binary
+files where difference output wouldn't be useful to human eyes. The exit
+status is also set to non-zero if they differ, which is great in scripts
+that have to look for changes in files.
+
+The output format is _interesting_ to say the least. You eventually get
+used to it and are able to read it handily. It's line-oriented; it will
+basically tell you which lines you'd have to change to turn `file1` into
+`file2`.
+
+Oh, wait. Did I say "output _format_"? I mean _formats_. There are three
+of them you might encounter.
+
+#### Classic Output
+
+This is the default mode.
+
+Here are two files—see the differences?
+
+``` {.default}
+$ cat foo.txt
+  This is a test
+  And this is file foo
+  And a third line
+$ cat bar.txt
+  This is a test
+  And this is file bar
+```
+
+In order to edit `foo` and turn it into `bar`, you'd have to change the
+second line to read `And this is file bar`. Then `foo` would be the
+same.
+
+Let's see `diff` tell us that:
+
+``` {.default}`
+$ diff foo.txt bar.txt
+  2,3c2
+  < And this is file foo
+  < And a third line
+  ---
+  > And this is file bar
+```
+
+You can read that as "Line 2 of foo.txt is changed in line 2 of bar.txt"
+(that's the `2c2` part).
+
+And anything with a less than is the left file `foo.txt` and a greater
+than is the right file `bar.txt`.
+
+So it uses `c` to indicate a changed line, and it also uses `d` for
+deleted lines and `a` for added lines.
+
+#### Copied Context Output
+
+You get into this mode by specifying `-c` on the command line. It will
+show you differences _in context_, that is, surrounded by lines that are
+not different. It gives you a better idea, at a glance, the part of the
+file where the diffs are.
+
+Using the same files from the classic format example, above:
+
+``` {.default}
+$ diff -c foo.txt bar.txt
+  *** foo.txt   2025-12-17 16:39:45.794478870 -0800
+  --- bar.txt   2025-12-17 16:30:56.783306931 -0800
+  ***************
+  *** 1,3 ****
+    This is a test
+  ! And this is file foo
+  ! And a third line
+  --- 1,2 ----
+    This is a test
+  ! And this is file bar
+```
+
+It indicates changed lines with `!`, added lines with `+`, and removed
+lines with `-`. And we have the line numbers in `foo.txt` and `bar.txt`
+shown, as well.
+
+#### Unified Output
+
+As mentioned previously, this is the mode that Git uses.
+
+It's basically the same information as the copied context output, but in
+a different format.
+
+Using the same files from the classic format example, above:
+
+``` {.default}
+$ diff -u foo.txt bar.txt
+  --- foo.txt   2025-12-17 16:39:45.794478870 -0800
+  +++ bar.txt   2025-12-17 16:30:56.783306931 -0800
+  @@ -1,3 +1,2 @@
+   This is a test
+  -And this is file foo
+  -And a third line
+  +And this is file bar
+```
+
+Unified mode shows changed lines as a combination of a line delete and
+line add. In general, lines prefaced with a `-` are lines you'd have to
+delete in `foo.txt` to make it line `bar.txt`, and lines that start with
+`+` are lines you'd have to add.
+
+### Example {.unnumbered .unlisted}
+
+Here's a more complex example in classic output:
+
+``` {.default}
+$ diff foo2.txt bar2.txt
+  1c1,2
+  < Paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
+  ---
+  > Changed this line. And deleted two lines from the second
+  > paragraph.
+  8,9d8
+  < paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
+  < paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
+  19a19
+  > And added this line in paragraph 4
+```
+
+``` {.default}
+% diff -c foo2.txt bar2.txt
+*** foo2.txt	2025-12-17 17:23:08.856329098 -0800
+--- bar2.txt	2025-12-17 17:22:47.690559025 -0800
+***************
+*** 1,12 ****
+! Paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
+  paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
+  paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
+  paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
+
+  Paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
+  paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
+- paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
+- paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
+
+  Paragraph 3 paragraph 3 paragraph 3 paragraph 3 paragraph 3
+  paragraph 3 paragraph 3 paragraph 3 paragraph 3 paragraph 3
+--- 1,11 ----
+! Changed this line. And deleted two lines from the second
+! paragraph.
+  paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
+  paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
+  paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
+
+  Paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
+  paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
+
+  Paragraph 3 paragraph 3 paragraph 3 paragraph 3 paragraph 3
+  paragraph 3 paragraph 3 paragraph 3 paragraph 3 paragraph 3
+***************
+*** 17,19 ****
+--- 16,19 ----
+  paragraph 4 paragraph 4 paragraph 4 paragraph 4 paragraph 4
+  paragraph 4 paragraph 4 paragraph 4 paragraph 4 paragraph 4
+  paragraph 4 paragraph 4 paragraph 4 paragraph 4 paragraph 4
++ And added this line in paragraph 4
+```
+
+``` {.default}
+% diff -u foo2.txt bar2.txt
+--- foo2.txt	2025-12-17 17:23:08.856329098 -0800
++++ bar2.txt	2025-12-17 17:22:47.690559025 -0800
+@@ -1,12 +1,11 @@
+-Paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
++Changed this line. And deleted two lines from the second
++paragraph.
+ paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
+ paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
+ paragraph 1 paragraph 1 paragraph 1 paragraph 1 paragraph 1
+
+ Paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
+ paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
+-paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
+-paragraph 2 paragraph 2 paragraph 2 paragraph 2 paragraph 2
+
+ Paragraph 3 paragraph 3 paragraph 3 paragraph 3 paragraph 3
+ paragraph 3 paragraph 3 paragraph 3 paragraph 3 paragraph 3
+@@ -17,3 +16,4 @@
+ paragraph 4 paragraph 4 paragraph 4 paragraph 4 paragraph 4
+ paragraph 4 paragraph 4 paragraph 4 paragraph 4 paragraph 4
+ paragraph 4 paragraph 4 paragraph 4 paragraph 4 paragraph 4
++And added this line in paragraph 4
+```
+
+``` {.default}
+$ diff -q foo2.txt bar2.txt
+  Files foo2.txt and bar2.txt differ
+```
+
+### See Also {.unnumbered .unlisted}
+
+[patch](#man-patch)
+
+-->
 <!-- ================================================================ -->
 
 <!--
